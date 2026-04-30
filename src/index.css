@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Playfair Display', ui-serif, Georgia, serif;
+
+  --color-navy: #1E2A78;
+  --color-navy-dark: #151f5a;
+  --color-navy-light: #2a3a8f;
+  --color-blue: #0F8ACB;
+  --color-teal: #00A8A8;
+  --color-teal-dark: #008f8f;
+  --color-sky: #5BC0EB;
+  --color-sky-light: #e8f6fc;
+  --color-grey: #F2F4F7;
+  --color-grey-dark: #e5e8ed;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-text-muted: #999999;
+
+  --color-primary: #1E2A78;
+  --color-primary-dark: #151f5a;
+  --color-primary-light: #e8ecfc;
+  --color-secondary: #0F8ACB;
+  --color-accent: #00A8A8;
+  --color-accent-dark: #008f8f;
+  --color-dark: #333333;
+  --color-dark-light: #444444;
+  --color-gray-50: #F2F4F7;
+  --color-gray-100: #F2F4F7;
+  --color-gray-200: #e5e8ed;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333333;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', ui-serif, Georgia, serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F2F4F7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #0F8ACB 0%, #1E2A78 100%);
+}
+
+.gradient-blue-reverse {
+  background: linear-gradient(135deg, #1E2A78 0%, #0F8ACB 100%);
+}
