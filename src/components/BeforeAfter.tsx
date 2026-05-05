@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { MoveHorizontal } from 'lucide-react';
 
 const cases = [
-  { id: 1, title: 'Smile Transformation', description: 'Full mouth rehabilitation with implants and crowns', beforeImage: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80', afterImage: 'https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&q=80' },
-  { id: 2, title: 'Teeth Whitening', description: 'Professional whitening treatment results', beforeImage: 'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80', afterImage: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80' },
-  { id: 3, title: 'Dental Implants', description: 'Single tooth implant with natural-looking crown', beforeImage: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800&q=80', afterImage: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80' },
+  { id: 1, title: 'Smile Transformation', description: 'Full mouth rehabilitation with implants and crowns', beforeImage: '/images/cases/smile_transform_before.png', afterImage: '/images/cases/smile_transform_after.png' },
+  { id: 2, title: 'Teeth Whitening', description: 'Professional whitening treatment results', beforeImage: '/images/cases/teeth_whitening_before.png', afterImage: '/images/cases/teeth_whitening_after.png' },
+  { id: 3, title: 'Dental Implants', description: 'Single tooth implant with natural-looking crown', beforeImage: '/images/cases/dental_implant_before.png', afterImage: '/images/cases/dental_implant_after.png' },
 ];
 
 function ComparisonSlider({ beforeImage, afterImage }: { beforeImage: string; afterImage: string }) {
@@ -44,15 +44,23 @@ function ComparisonSlider({ beforeImage, afterImage }: { beforeImage: string; af
   );
 }
 
-export default function BeforeAfter() {
+export default function BeforeAfter({ 
+  headline = 'Before & After Transformations', 
+  intro = 'See the remarkable transformations our patients have experienced. Drag the slider to compare.',
+  subhead = 'Real Results'
+}: { 
+  headline?: string; 
+  intro?: string;
+  subhead?: string;
+}) {
   const [activeCase, setActiveCase] = useState(0);
   return (
     <section id="before-after" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
-          <span className="inline-block px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-semibold rounded-full mb-4">Real Results</span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1E2A78] mb-4">Before & After Transformations</h2>
-          <p className="text-[#333333]/60 max-w-2xl mx-auto">See the remarkable transformations our patients have experienced. Drag the slider to compare.</p>
+          <span className="inline-block px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-semibold rounded-full mb-4">{subhead}</span>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1E2A78] mb-4">{headline}</h2>
+          <p className="text-[#333333]/60 max-w-2xl mx-auto">{intro}</p>
         </motion.div>
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {cases.map((c, index) => (

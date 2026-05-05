@@ -30,37 +30,36 @@ export default function Hero() {
               <span className="text-[#00A8A8] text-xs sm:text-sm font-semibold leading-tight">Specialist in Implants & Smile Correction</span>
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}
-              className="text-[#00A8A8] font-bold tracking-[0.15em] uppercase text-xs sm:text-sm mb-4"
-            >
-              Your Smile Deserves The Best Care
-            </motion.p>
-
             <motion.h1
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}
               className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-[#1E2A78] leading-[1.15] mb-6"
             >
-              Healthy Smile,{' '}
-              <span className="text-[#0F8ACB]">Confident You</span>
+              Your Smile Deserves <br className="hidden lg:block" />
+              <span className="text-[#0F8ACB]">the Best Care</span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg text-[#333333]/70 mb-8 leading-relaxed max-w-lg"
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-lg sm:text-xl font-medium text-[#1E2A78] mb-4 leading-relaxed max-w-lg"
             >
-              Permanent solutions for missing teeth, painless treatments, and confident smiles.
-              Experience world-class dental care right here in Mylapore, Chennai.
+              World-class dental treatments, delivered by experienced specialists - right here in the heart of Chennai.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}
+              className="text-base sm:text-lg text-[#333333]/70 mb-8 leading-relaxed max-w-lg"
+            >
+              At Tooth & Smile, we combine advanced technology with a gentle, patient-first approach to give you a smile you're proud of. Whether it's your routine checkup or a complete smile makeover, we're with you every step of the way.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.35 }}
               className="flex flex-col sm:flex-row gap-4 mb-10"
             >
               <button onClick={scrollToContact}
                 className="flex items-center justify-center gap-2 px-8 py-4 bg-[#00A8A8] hover:bg-[#008f8f] text-white font-semibold rounded-xl shadow-lg shadow-[#00A8A8]/25 transition-all hover:shadow-xl hover:shadow-[#00A8A8]/30 hover:-translate-y-0.5"
               >
-                <Calendar size={18} />Book Appointment
+                <Calendar size={18} />Book a Free Consultation
               </button>
               <a href="https://wa.me/919551120208" target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#1E2A78]/15 text-[#1E2A78] font-semibold rounded-xl hover:border-[#00A8A8] hover:text-[#00A8A8] transition-all hover:-translate-y-0.5"
@@ -69,7 +68,7 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.45 }}
               className="flex flex-wrap gap-6"
             >
               <div className="flex items-center gap-2 text-[#333333]/60 text-sm">

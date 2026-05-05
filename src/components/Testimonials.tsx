@@ -10,19 +10,29 @@ const testimonials = [
   { id: 5, name: 'Lakshmi N.', location: 'Alwarpet, Chennai', rating: 5, text: 'The smile makeover completely changed my life. I used to avoid photos and social gatherings. Now I can\'t stop smiling!', treatment: 'Smile Makeover', avatar: 'L', color: 'bg-[#1E2A78]/10 text-[#1E2A78]' },
 ];
 
-export default function Testimonials() {
+export default function Testimonials({
+  headline = 'What Our Patients Say',
+  intro = 'Real stories from real patients who transformed their smiles and their lives.',
+  subhead = 'Patient Stories',
+  data = testimonials
+}: {
+  headline?: string;
+  intro?: string;
+  subhead?: string;
+  data?: typeof testimonials;
+}) {
   const [current, setCurrent] = useState(0);
-  const next = () => setCurrent((p) => (p + 1) % testimonials.length);
-  const prev = () => setCurrent((p) => (p - 1 + testimonials.length) % testimonials.length);
-  const t = testimonials[current];
+  const next = () => setCurrent((p) => (p + 1) % data.length);
+  const prev = () => setCurrent((p) => (p - 1 + data.length) % data.length);
+  const t = data[current];
 
   return (
     <section id="testimonials" className="py-24 bg-[#F2F4F7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
-          <span className="inline-block px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-semibold rounded-full mb-4">Patient Stories</span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1E2A78] mb-4">What Our Patients Say</h2>
-          <p className="text-[#333333]/60 max-w-2xl mx-auto">Real stories from real patients who transformed their smiles and their lives.</p>
+          <span className="inline-block px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-semibold rounded-full mb-4">{subhead}</span>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1E2A78] mb-4">{headline}</h2>
+          <p className="text-[#333333]/60 max-w-2xl mx-auto">{intro}</p>
         </motion.div>
         <div className="max-w-4xl mx-auto">
           <div className="relative">
@@ -54,7 +64,7 @@ export default function Testimonials() {
                 <ChevronLeft size={20} />
               </button>
               <div className="flex items-center gap-2">
-                {testimonials.map((_, i) => (
+                {data.map((_, i) => (
                   <button key={i} onClick={() => setCurrent(i)} className={`h-2 rounded-full transition-all ${i === current ? 'w-8 bg-[#00A8A8]' : 'w-2 bg-[#333333]/20 hover:bg-[#333333]/40'}`} />
                 ))}
               </div>

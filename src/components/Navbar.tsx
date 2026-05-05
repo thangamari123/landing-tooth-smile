@@ -5,8 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { treatments } from '../lib/treatments';
 
 const navLinks = [
-  { label: 'About', href: '#about', isHash: true },
-  { label: 'Doctor', href: '#doctor', isHash: true },
+  { label: 'Our Doctors', href: '#doctors', isHash: true },
   { label: 'Reviews', href: '#testimonials', isHash: true },
 ];
 
@@ -111,6 +110,12 @@ export default function Navbar() {
                 </button>
               ))}
 
+              <Link to="/about"
+                className={`relative px-3 py-6 text-[14px] font-medium tracking-wide transition-colors duration-200 ${location.pathname === '/about' ? 'text-[#1E2A78]' : 'text-[#333333]/70 hover:text-[#1E2A78]'}`}>
+                About
+                <span className={`absolute bottom-0 left-3 right-3 h-[2px] bg-[#00A8A8] transition-transform duration-300 origin-left ${location.pathname === '/about' ? 'scale-x-100' : 'scale-x-0'}`} />
+              </Link>
+
               <Link to="/before-after"
                 className={`relative px-3 py-6 text-[14px] font-medium tracking-wide transition-colors duration-200 ${location.pathname === '/before-after' ? 'text-[#1E2A78]' : 'text-[#333333]/70 hover:text-[#1E2A78]'}`}>
                 Before & After
@@ -130,11 +135,11 @@ export default function Navbar() {
               <a href="tel:9551120208" className="flex items-center gap-2 px-5 py-2.5 border border-[#F2F4F7] text-[#333333] text-[13px] font-semibold tracking-wide rounded-lg hover:border-[#1E2A78] hover:text-[#1E2A78] transition-all duration-200">
                 <Phone size={14} />Call Us
               </a>
-              <a href="https://wa.me/919551120208?text=Hi,%20I%20would%20like%20to%20book%20an%20appointment%20at%20Tooth%20%26%20Smile%20Advanced%20Dentistry." target="_blank" rel="noopener noreferrer"
+              <Link to="/book-appointment"
                 className="flex items-center gap-2 px-5 py-2.5 bg-[#00A8A8] hover:bg-[#008f8f] text-white text-[13px] font-semibold tracking-wide rounded-lg transition-all duration-200 shadow-md shadow-[#00A8A8]/20 hover:shadow-lg hover:shadow-[#00A8A8]/30"
               >
                 <Calendar size={14} />Book Appointment
-              </a>
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -195,6 +200,14 @@ export default function Navbar() {
               ))}
 
               <Link
+                to="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left px-2 py-4 text-[#333333] text-[15px] font-medium border-b border-[#F2F4F7]"
+              >
+                About
+              </Link>
+
+              <Link
                 to="/before-after"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-left px-2 py-4 text-[#333333] text-[15px] font-medium border-b border-[#F2F4F7]"
@@ -218,15 +231,14 @@ export default function Navbar() {
                   <Phone size={15} />
                   Call Us
                 </a>
-                <a
-                  href="https://wa.me/919551120208?text=Hi,%20I%20would%20like%20to%20book%20an%20appointment%20at%20Tooth%20%26%20Smile%20Advanced%20Dentistry."
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/book-appointment"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-center gap-2 w-full px-5 py-3.5 bg-[#00A8A8] text-white text-[13px] font-semibold rounded-lg"
                 >
                   <Calendar size={15} />
                   Book Appointment
-                </a>
+                </Link>
               </div>
 
               <div className="pt-8 pb-4 text-center">
