@@ -1,26 +1,24 @@
 import Hero from '../components/Hero';
-import Highlights from '../components/Highlights';
+import TrustBar from '../components/TrustBar';
 import Services from '../components/Services';
-import Stats from '../components/Stats';
-import BeforeAfter from '../components/BeforeAfter';
+import WhyChooseUs from '../components/WhyChooseUs';
 import OurDoctors from '../components/OurDoctors';
 import Testimonials from '../components/Testimonials';
-import WhyChooseUs from '../components/WhyChooseUs';
-import Timings from '../components/Timings';
+import BeforeAfter from '../components/BeforeAfter';
+import ContactForm from '../components/ContactForm';
 import FAQSection from '../components/FAQSection';
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Highlights />
+      <TrustBar />
       <Services />
-      <Stats />
-      <BeforeAfter />
+      <WhyChooseUs />
       <OurDoctors />
       <Testimonials />
-      <WhyChooseUs />
-      <Timings />
+      <BeforeAfter />
+      <ContactForm />
       <FAQSection />
     </>
   );

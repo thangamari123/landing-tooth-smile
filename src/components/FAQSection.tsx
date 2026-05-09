@@ -63,15 +63,7 @@ export default function FAQSection() {
           })}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <p className="text-[#333333]/60 mb-5">Still have questions? Our team is happy to help.</p>
-          <WhatsAppButton label="Ask on WhatsApp" variant="primary" />
-        </motion.div>
+
       </div>
     </section>
   );

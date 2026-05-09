@@ -43,13 +43,7 @@ export default function AboutPage() {
     { text: "Dr. Murali Karthik explains everything clearly and performs procedures painlessly. Extremely friendly staff. Highly recommended.", author: "Verified Patient", source: "Google" },
   ];
 
-  const clinicTestimonials = [
-    { id: 1, name: 'Priya R.', location: 'Mylapore', rating: 5, text: "I was terrified of the dentist for years. The team at Tooth & Smile made my root canal completely painless. I actually can't believe how easy it was. I only wish I had come sooner.", treatment: 'Root Canal Treatment', avatar: 'P', color: 'bg-[#5BC0EB]/20 text-[#0F8ACB]' },
-    { id: 2, name: 'Karthik S.', location: 'Adyar', rating: 5, text: "My son used to cry every time we visited a dentist. Here, the pediatric doctor was so patient and friendly that he actually looks forward to his checkups now. Truly remarkable.", treatment: 'Pediatric Dentistry', avatar: 'K', color: 'bg-[#1E2A78]/10 text-[#1E2A78]' },
-    { id: 3, name: 'Meena V.', location: 'Velachery', rating: 5, text: "I got dental implants after years of hiding my smile. The procedure was smooth, the team was professional, and the result looks completely natural. It's changed my confidence entirely.", treatment: 'Dental Implants', avatar: 'M', color: 'bg-[#00A8A8]/10 text-[#00A8A8]' },
-    { id: 4, name: 'Rahul N.', location: 'T. Nagar', rating: 5, text: "Best dental clinic in Chennai — no exaggeration. From the moment I walked in to the follow-up calls after treatment, everything was handled with so much care. Highly recommend.", treatment: 'General Dentistry', avatar: 'R', color: 'bg-[#0F8ACB]/10 text-[#0F8ACB]' },
-    { id: 5, name: 'Anitha K.', location: 'NRI Patient', rating: 5, text: "I was visiting from abroad and needed emergency treatment. Tooth & Smile fit me in the same day, gave me excellent care, and the pricing was completely transparent. Outstanding.", treatment: 'Emergency Care', avatar: 'A', color: 'bg-[#1E2A78]/10 text-[#1E2A78]' },
-  ];
+
 
   return (
     <div className="pt-[72px]">
@@ -126,7 +120,7 @@ export default function AboutPage() {
               {/* Doctor Image & Quote */}
               <div className="w-full lg:w-2/5 relative bg-[#1E2A78] min-h-[500px] lg:min-h-[700px]">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1E2A78] via-transparent to-transparent opacity-90 z-10" />
-                <img src="/images/doctor-portrait.png" alt="Dr. R. Murali Karthik" className="w-full h-full object-cover object-top opacity-90 absolute inset-0" />
+                <img src="https://res.cloudinary.com/dcldlvuib/image/upload/v1778329943/Dr._Muralikarthik_Prosthodontist_and_implantologist_ryfwpq.png" alt="Dr. R. Murali Karthik" className="w-full h-full object-cover object-top opacity-90 absolute inset-0" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10 z-20">
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl">
                     <p className="text-white text-lg sm:text-xl italic font-serif leading-relaxed">
@@ -252,18 +246,10 @@ export default function AboutPage() {
       </section>
 
       {/* Before & After Section */}
-      <BeforeAfter 
-        headline="Real Patients. Real Transformations." 
-        intro="See the difference expert dental care makes. These are real patient cases treated at Tooth & Smile — with their full consent and trust." 
-        subhead="Before & After" 
-      />
+      <BeforeAfter />
 
       {/* Clinic Testimonials Section */}
-      <Testimonials 
-        headline="What Our Patients Say" 
-        intro="We measure our success by the smiles we create and the trust we earn. Here's what our patients have to say about their experience at Tooth & Smile." 
-        data={clinicTestimonials} 
-      />
+      <Testimonials />
     </div>
   );
 }

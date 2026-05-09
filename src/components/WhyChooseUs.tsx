@@ -1,38 +1,79 @@
 import { motion } from 'framer-motion';
-import { Scan, Zap, FlaskConical, Heart, Shield, Clock, Award, Users } from 'lucide-react';
+import { Shield, Heart, Zap, Clock, UserCheck } from 'lucide-react';
 
-const reasons = [
-  { icon: Scan, title: 'Advanced OPG Imaging', description: 'Digital panoramic X-rays for precise diagnosis and treatment planning with minimal radiation exposure.' },
-  { icon: Zap, title: 'Laser Technology', description: 'Laser-assisted procedures for painless treatments, faster healing, and reduced bleeding.' },
-  { icon: FlaskConical, title: 'In-house Dental Lab', description: 'Our on-site laboratory ensures faster turnaround, better quality control, and perfect-fitting restorations.' },
-  { icon: Heart, title: 'Personalized Care', description: 'Every treatment plan is customized to your unique needs, goals, and comfort level.' },
-  { icon: Shield, title: 'Sterilization Protocol', description: 'Hospital-grade sterilization and infection control for your complete safety and peace of mind.' },
-  { icon: Clock, title: 'Flexible Timings', description: 'Open 6 days a week with extended hours. Sunday appointments available for busy professionals.' },
-  { icon: Award, title: 'MDS Specialist', description: 'Treatment by a qualified MDS Prosthodontist with specialized training in implants and aesthetics.' },
-  { icon: Users, title: 'Patient Education', description: 'We explain every procedure, show you digital previews, and ensure you make informed decisions.' },
+const features = [
+  { icon: Heart, title: 'Pain-Free Treatment', desc: 'Gentle procedures with advanced anesthetics.' },
+  { icon: Zap, title: 'Digital Dentistry', desc: 'Precise planning using 3D imaging technology.' },
+  { icon: Shield, title: 'Advanced Technology', desc: 'Laser treatments and sterile environments.' },
+  { icon: Clock, title: 'Emergency Support', desc: '24/7 priority care for severe dental pain.' },
+  { icon: UserCheck, title: 'Certified Doctors', desc: 'MDS specialists with 10+ years experience.' },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
-          <span className="inline-block px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-semibold rounded-full mb-4">Why Choose Us</span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1E2A78] mb-4">The Tooth & Smile Difference</h2>
-          <p className="text-[#333333]/60 max-w-2xl mx-auto">We combine advanced technology, specialist expertise, and genuine care to deliver an unmatched dental experience.</p>
-        </motion.div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {reasons.map((reason, index) => (
-            <motion.div key={reason.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.06 }}
-              className="group bg-[#F2F4F7] hover:bg-white rounded-2xl p-6 border border-transparent hover:border-[#00A8A8]/20 hover:shadow-lg hover:shadow-[#1E2A78]/5 transition-all duration-300"
-            >
-              <div className="w-12 h-12 bg-[#00A8A8]/10 group-hover:bg-[#00A8A8]/20 rounded-xl flex items-center justify-center mb-4 transition-colors">
-                <reason.icon size={22} className="text-[#00A8A8]" />
+    <section className="py-24 relative overflow-hidden bg-white">
+      {/* Soft gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-bg-main via-white to-cyan/5 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left: Doctor Consultation Image */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-transparent rounded-[2.5rem] blur-2xl transform -translate-x-4 translate-y-4" />
+            <div className="relative rounded-[2.5rem] overflow-hidden border border-white shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Doctor Consultation" className="w-full h-[600px] object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8 text-white">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                    <Shield size={24} className="text-cyan" />
+                  </div>
+                  <div className="font-bold text-xl">100% Safe & Secure</div>
+                </div>
+                <p className="text-white/80 font-medium">Following international standards of sterilization.</p>
               </div>
-              <h3 className="text-[#1E2A78] font-bold text-base mb-2">{reason.title}</h3>
-              <p className="text-[#333333]/60 text-sm leading-relaxed">{reason.description}</p>
+            </div>
+          </motion.div>
+
+          {/* Right: Feature Cards */}
+          <div className="flex flex-col justify-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
+              <span className="inline-flex px-4 py-1.5 bg-secondary/10 text-secondary text-sm font-bold rounded-full mb-4 tracking-wide uppercase">Why Choose Us</span>
+              <h2 className="font-serif text-4xl sm:text-5xl font-extrabold text-primary leading-tight">Elevating Dental Care to the Next Level</h2>
             </motion.div>
-          ))}
+
+            <div className="grid gap-4">
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
+                return (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, x: 30 }} 
+                    whileInView={{ opacity: 1, x: 0 }} 
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="glass-card flex items-start gap-4 p-5 rounded-2xl hover:-translate-y-1 transition-transform cursor-default group"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-bg-main flex items-center justify-center text-cyan group-hover:bg-cyan group-hover:text-white transition-colors shrink-0 shadow-sm border border-gray-100">
+                      <Icon size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-primary mb-1">{feature.title}</h3>
+                      <p className="text-gray-500 font-medium text-sm leading-relaxed">{feature.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
