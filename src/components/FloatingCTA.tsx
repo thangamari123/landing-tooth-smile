@@ -8,17 +8,17 @@ export default function FloatingCTA() {
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 flex shadow-[0_-4px_20px_rgba(0,0,0,0.15)] pointer-events-auto">
         <a 
           href="tel:9551120208" 
-          className="flex-1 bg-[#0F3D91] text-white py-3.5 flex items-center justify-center gap-2 font-bold active:bg-[#0b2e6b] transition-colors"
+          className="flex-1 bg-[#0F3D91] text-white py-3 flex items-center justify-center gap-2 font-bold active:bg-[#0b2e6b] transition-colors"
         >
-          <Phone size={18} /> Call Now
+          <Phone size={16} /> <span className="text-sm">Call Now</span>
         </a>
         <a 
           href="https://wa.me/919551120208?text=Hi,%20I%20would%20like%20to%20book%20an%20appointment%20at%20Tooth%20%26%20Smile." 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex-1 bg-[#25D366] text-white py-3.5 flex items-center justify-center gap-2 font-bold active:bg-[#1da851] transition-colors"
+          className="flex-1 bg-[#25D366] text-white py-3 flex items-center justify-center gap-2 font-bold active:bg-[#1da851] transition-colors"
         >
-          <MessageCircle size={20} /> WhatsApp
+          <MessageCircle size={18} /> <span className="text-sm">WhatsApp</span>
         </a>
       </div>
 

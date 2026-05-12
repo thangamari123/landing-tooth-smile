@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check, Shield, Stethoscope, Clock, Users, Award, BookOpen, GraduationCap, Star, Quote } from 'lucide-react';
-import WhatsAppButton from '../components/WhatsAppButton';
+import { Check, Shield, Stethoscope, Clock, Users, Award, BookOpen, GraduationCap, Star, Quote, ArrowRight } from 'lucide-react';
+import EnquiryButton from '../components/EnquiryButton';
 import BeforeAfter from '../components/BeforeAfter';
 import Testimonials from '../components/Testimonials';
 
@@ -11,12 +12,12 @@ export default function AboutPage() {
   }, []);
 
   const highlights = [
-    { icon: Shield, text: 'Modern, hygienic clinic environment' },
-    { icon: Stethoscope, text: 'Advanced digital X-ray and 3D imaging' },
-    { icon: Star, text: 'Painless injection techniques' },
-    { icon: Clock, text: 'Flexible appointment timings, including weekends' },
-    { icon: Users, text: 'Accessible for elderly and special needs patients' },
-    { icon: Award, text: 'NABH-aligned sterilization protocols' },
+    { icon: Shield, title: 'Hygienic Care', text: 'Modern, sterile and safe clinic environment' },
+    { icon: Stethoscope, title: 'Digital Precision', text: 'Advanced digital X-ray and 3D imaging' },
+    { icon: Star, title: 'Painless Tech', text: 'Innovative painless injection techniques' },
+    { icon: Clock, title: 'Flexible Timing', text: 'Convenient weekend and evening appointments' },
+    { icon: Users, title: 'Inclusive Care', text: 'Accessible for elderly and special needs' },
+    { icon: Award, title: 'Certified Safety', text: 'NABH-aligned sterilization protocols' },
   ];
 
   const specializations = [
@@ -46,79 +47,191 @@ export default function AboutPage() {
 
 
   return (
-    <div className="pt-[72px]">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 bg-[#1E2A78] overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1E2A78]/90 to-[#0F8ACB]/80 z-10" />
-          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1920&q=80" alt="Clinic Interior" className="w-full h-full object-cover" />
+    <div className="pt-24 lg:pt-32 bg-white">
+      {/* Responsive Hero Section */}
+      <section className="relative pt-12 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
+        {/* Decorative Background */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-[-10%] right-[-5%] w-[30%] h-[30%] bg-cyan/5 rounded-full blur-[100px]" />
         </div>
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-block px-4 py-1.5 bg-white/20 text-white text-sm font-semibold tracking-wider uppercase rounded-full mb-6 backdrop-blur-md border border-white/20">
-            About Us
-          </motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Trusted by Thousands of Families in Chennai
-          </motion.h1>
-        </div>
-      </section>
 
-      {/* About Content */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1E2A78] mb-6 leading-tight">
-                Expert Dental Care in a <br/><span className="text-[#0F8ACB]">Judgment-Free Environment</span>
-              </h2>
-              <div className="space-y-5 text-lg text-[#333333]/70 leading-relaxed mb-8">
-                <p>
-                  Tooth & Smile was founded with one belief — that every patient deserves expert dental care in a comfortable, judgment-free environment. Located in Mylapore, Chennai, we've been serving families across the city for over 13 years, earning the trust of more than 5,000 happy patients.
-                </p>
-                <p>
-                  Our clinic is equipped with the latest digital dentistry tools - from 3D imaging and intraoral cameras to laser dentistry systems - ensuring that every diagnosis is precise and every treatment is efficient.
-                </p>
-                <p className="font-medium text-[#1E2A78] text-xl">
-                  We believe that great dental care goes beyond fixing teeth. It's about building relationships, easing anxieties, and transforming lives - one smile at a time.
-                </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            {/* Content Left */}
+            <div className="w-full lg:w-1/2 text-center lg:text-left">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-secondary/10 text-secondary text-[10px] sm:text-xs font-bold tracking-widest uppercase rounded-full mb-6 border border-secondary/20"
+              >
+                <Star size={14} className="fill-secondary" /> Our Legacy of Excellence
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-primary mb-6 leading-[1.15]"
+              >
+                Transforming Smiles with <br className="hidden sm:block" />
+                <span className="text-secondary italic">Artistry & Science</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium mb-10"
+              >
+                Over 13 years of clinical expertise, 5,000+ satisfied smiles, and a relentless commitment to painless dental innovation at Tooth & Smile.
+              </motion.p>
+
+              {/* Stats Grid - Desktop and Mobile friendly */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 lg:max-w-md mb-12 lg:mb-0">
+                {[
+                  { label: 'Clinically Proven', value: '13+ Yrs', icon: Award, color: 'bg-secondary/10 text-secondary' },
+                  { label: 'Patient Trust', value: '5,000+', icon: Users, color: 'bg-cyan/10 text-cyan' },
+                  { label: 'Modern Tech', value: 'Digital 3D', icon: Stethoscope, color: 'bg-accent/10 text-accent' },
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 + (i * 0.1) }}
+                    className="bg-white/50 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center lg:items-start text-center lg:text-left"
+                  >
+                    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center mb-2 ${stat.color}`}>
+                      <stat.icon size={18} />
+                    </div>
+                    <div className="text-sm sm:text-base font-bold text-primary">{stat.value}</div>
+                    <div className="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-tight leading-tight">{stat.label}</div>
+                  </motion.div>
+                ))}
               </div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="bg-[#F2F4F7] rounded-[2rem] p-8 sm:p-10 border border-[#1E2A78]/5 shadow-xl shadow-[#1E2A78]/5">
-                <h3 className="font-bold text-[#1E2A78] text-2xl mb-8 font-serif">Clinic Highlights</h3>
-                <div className="space-y-4">
-                  {highlights.map((item, i) => (
-                    <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} 
-                      className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-[#1E2A78]/5 hover:border-[#00A8A8]/30 transition-colors"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-[#00A8A8]/10 flex items-center justify-center flex-shrink-0">
-                        <item.icon size={22} className="text-[#00A8A8]" />
-                      </div>
-                      <span className="font-semibold text-[#1E2A78] text-[15px]">{item.text}</span>
-                    </motion.div>
-                  ))}
+            </div>
+
+            {/* Image Right */}
+            <div className="w-full lg:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="relative"
+              >
+                {/* Main Image Container */}
+                <div className="relative rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl group">
+                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
+                  <img
+                    src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=80"
+                    alt="Advanced Dentistry"
+                    className="w-full h-[250px] sm:h-[350px] lg:h-[500px] object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
+
+                  {/* Advanced Dentistry Overlay Label */}
+                  <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-10">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white">
+                      <div className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
+                      <span className="text-xs sm:text-sm font-bold tracking-wide uppercase">Advanced Dentistry</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+
+                {/* Floating Element for Desktop */}
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -top-6 -right-6 hidden lg:block bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-20"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-500">
+                      <Shield size={20} />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-gray-500 uppercase">NABH Aligned</div>
+                      <div className="text-sm font-bold text-primary">Certified Safety</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Redesigned About Content Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-[#F8FAFC] relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-cyan/5 -skew-x-12 transform translate-x-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-4xl mx-auto mb-12 lg:mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="font-serif text-2xl sm:text-4xl font-bold text-[#1E2A78] mb-8 leading-tight"
+            >
+              Expert Dental Care in a <br /><span className="text-[#0F8ACB]">Judgment-Free Environment</span>
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+              className="space-y-6 text-base text-[#333333]/70 leading-relaxed font-medium"
+            >
+              <p>
+                Tooth & Smile was founded with one belief — that every patient deserves expert dental care in a comfortable, judgment-free environment. Located in Mylapore, Chennai, we've been serving families across the city for over 13 years, earning the trust of more than 5,000 happy patients.
+              </p>
+              <p>
+                Our clinic is equipped with the latest digital dentistry tools - from 3D imaging and intraoral cameras to laser dentistry systems - ensuring that every diagnosis is precise and every treatment is efficient.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Highlights Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {highlights.map((item, i) => (
+              <motion.div
+                key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="group bg-[#F8FAFC] p-5 lg:p-6 rounded-2xl border border-[#1E2A78]/5 hover:border-secondary/30 transition-all duration-300 hover:shadow-xl hover:shadow-secondary/5 hover:-translate-y-1"
+              >
+                <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border border-gray-50">
+                  <item.icon size={20} className="text-[#00A8A8]" />
+                </div>
+                <h4 className="font-bold text-[#1E2A78] text-base mb-2">{item.title}</h4>
+                <p className="text-[13px] text-[#333333]/60 leading-relaxed font-medium">{item.text}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
+            className="mt-12 lg:mt-20 p-6 sm:p-10 bg-gradient-to-br from-[#1E2A78] to-[#0F8ACB] rounded-[2rem] lg:rounded-[3rem] text-center shadow-2xl relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+            <div className="relative z-10">
+              <p className="font-serif text-white text-xl sm:text-2xl lg:text-3xl font-medium leading-relaxed max-w-4xl mx-auto">
+                "We believe that great dental care goes beyond fixing teeth. It's about building relationships, easing anxieties, and transforming lives - one smile at a time."
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Doctor Section */}
-      <section className="py-24 bg-[#F2F4F7]">
+      <section className="py-16 lg:py-24 bg-[#F2F4F7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center max-w-3xl mx-auto mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center max-w-3xl mx-auto mb-12">
             <span className="inline-block px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-semibold rounded-full mb-4">Meet the Expert Behind Your Smile</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1E2A78] mb-6">Specialists With Genuine Dedication</h2>
-            <p className="text-[#333333]/70 text-lg leading-relaxed">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1E2A78] mb-4">Specialists With Genuine Dedication</h2>
+            <p className="text-[#333333]/70 text-base leading-relaxed">
               At Tooth & Smile, you're treated by specialists who bring not just qualifications, but genuine dedication to every patient. Our lead doctor combines academic excellence, hands-on clinical experience, and a deeply patient-centred approach.
             </p>
           </motion.div>
 
-          <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#1E2A78]/10 border border-[#1E2A78]/5 w-full">
+          <div className="bg-white rounded-[1.5rem] overflow-hidden shadow-2xl shadow-[#1E2A78]/10 border border-[#1E2A78]/5 w-full">
             <div className="flex flex-col lg:flex-row">
               {/* Doctor Image & Quote */}
-              <div className="w-full lg:w-2/5 relative bg-[#1E2A78] min-h-[500px] lg:min-h-[700px]">
+              <div className="w-full lg:w-2/5 relative bg-[#1E2A78] min-h-[350px] sm:min-h-[450px] lg:min-h-[500px]">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1E2A78] via-transparent to-transparent opacity-90 z-10" />
                 <img src="https://res.cloudinary.com/dcldlvuib/image/upload/v1778329943/Dr._Muralikarthik_Prosthodontist_and_implantologist_ryfwpq.png" alt="Dr. R. Murali Karthik" className="w-full h-full object-cover object-top opacity-90 absolute inset-0" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10 z-20">
@@ -131,11 +244,11 @@ export default function AboutPage() {
               </div>
 
               {/* Doctor Details */}
-              <div className="w-full lg:w-3/5 p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
+              <div className="w-full lg:w-3/5 p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
                 <div className="mb-8 pb-8 border-b border-[#F2F4F7]">
-                  <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1E2A78] mb-3">Dr. R. Murali Karthik</h3>
+                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1E2A78] mb-3">Dr. R. Murali Karthik</h3>
                   <p className="text-[#00A8A8] font-bold tracking-wider uppercase text-sm sm:text-base mb-8">Chief Dental Surgeon | Prosthodontist & Implantologist</p>
-                  
+
                   <div className="grid sm:grid-cols-2 gap-8">
                     <div className="flex gap-4 items-start">
                       <div className="w-14 h-14 bg-[#00A8A8]/10 rounded-2xl flex items-center justify-center flex-shrink-0">
@@ -160,7 +273,7 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                <div className="space-y-6 text-[#333333]/80 leading-relaxed mb-10 text-base sm:text-lg">
+                <div className="space-y-4 text-[#333333]/80 leading-relaxed mb-8 text-sm sm:text-base">
                   <p>
                     <strong className="text-[#1E2A78]">Dr. R. Murali Karthik</strong> is one of Chennai's most trusted names in Prosthodontics and Implantology, with over <strong className="text-[#1E2A78]">13+ years of clinical and academic experience</strong>. He completed both his BDS and MDS from the prestigious Saveetha Dental College, Chennai (one of India's most prestigious dental institutions).
                   </p>
@@ -175,7 +288,7 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-8 bg-[#F2F4F7]/60 p-8 rounded-3xl">
+                <div className="grid sm:grid-cols-2 gap-6 bg-[#F2F4F7]/60 p-6 rounded-3xl">
                   <div>
                     <h4 className="font-bold text-[#1E2A78] text-lg mb-5 flex items-center gap-2"><Stethoscope size={20} className="text-[#00A8A8]" /> Specializations</h4>
                     <ul className="space-y-4">
@@ -191,17 +304,17 @@ export default function AboutPage() {
                     <h4 className="font-bold text-[#1E2A78] text-lg mb-5 flex items-center gap-2"><Award size={20} className="text-[#00A8A8]" /> Achievements</h4>
                     <ul className="space-y-4">
                       {achievements.map((ach, i) => (
-                        <li key={i} className="flex items-start gap-3 text-[14px] sm:text-[15px] text-[#333333]/80 font-medium">
-                          <Check size={18} className="text-[#00A8A8] flex-shrink-0 mt-0.5" />
+                        <li key={i} className="flex items-start gap-3 text-sm text-[#333333]/80 font-medium">
+                          <Check size={16} className="text-[#00A8A8] flex-shrink-0 mt-0.5" />
                           <span className="leading-tight">{ach}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-                
+
                 <div className="mt-12">
-                  <WhatsAppButton label="Book Consultation with Dr. Karthik" variant="large" className="w-full sm:w-auto px-10 py-4 text-lg" />
+                  <EnquiryButton label="Book Consultation with Dr. Karthik" variant="large" className="w-full sm:w-auto px-8 py-3 text-base" />
                 </div>
               </div>
             </div>
@@ -210,16 +323,16 @@ export default function AboutPage() {
       </section>
 
       {/* Doctor Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 lg:mb-12">
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1E2A78] mb-4">What Patients Say About Dr. Murali Karthik</h3>
             <div className="w-24 h-1 bg-[#00A8A8] mx-auto rounded-full" />
           </div>
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 lg:gap-6 max-w-5xl mx-auto">
             {doctorTestimonials.map((testimonial, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="bg-[#F2F4F7]/40 p-8 rounded-2xl border border-[#1E2A78]/5 relative"
+                className="bg-[#F2F4F7]/40 p-6 rounded-2xl border border-[#1E2A78]/5 relative"
               >
                 <Quote size={32} className="text-[#00A8A8]/20 absolute top-6 left-6" />
                 <div className="relative z-10 pl-4">
@@ -228,7 +341,7 @@ export default function AboutPage() {
                       <Star key={starIndex} size={16} className="text-amber-400 fill-amber-400" />
                     ))}
                   </div>
-                  <p className="text-[#333333]/80 text-[15px] leading-relaxed italic mb-6">"{testimonial.text}"</p>
+                  <p className="text-[#333333]/80 text-sm leading-relaxed italic mb-6">"{testimonial.text}"</p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-[#1E2A78]/10 flex items-center justify-center text-[#1E2A78] font-bold text-sm">
                       {testimonial.author.charAt(0)}
@@ -250,6 +363,7 @@ export default function AboutPage() {
 
       {/* Clinic Testimonials Section */}
       <Testimonials />
+
     </div>
   );
 }

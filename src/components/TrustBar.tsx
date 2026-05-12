@@ -41,7 +41,7 @@ function Counter({ value, decimals, suffix }: { value: number, decimals: number,
 
 export default function TrustBar() {
   return (
-    <div className="relative -mt-10 z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+    <div className="relative mt-8 lg:mt-12 z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
       <div className="glass-card rounded-[1.5rem] py-5 border border-white/60 bg-white/80 overflow-hidden relative">
         
         {/* Fading Edges for the marquee */}

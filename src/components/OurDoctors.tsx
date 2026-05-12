@@ -1,7 +1,7 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, GraduationCap, Award, Calendar, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, GraduationCap, Award, Calendar, Star, ShieldCheck, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const doctors = [
   {
@@ -11,7 +11,7 @@ const doctors = [
     experience: "13+ Years",
     rating: "4.9",
     image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329943/Dr._Muralikarthik_Prosthodontist_and_implantologist_ryfwpq.png",
-    about: "Expert in complex full mouth rehabilitations, dental implants, and smile designing with a gentle, patient-first approach."
+    about: "Expert in complex full mouth rehabilitations and dental implants with a gentle, patient-first approach."
   },
   {
     name: "Dr. K. Lakshmikumari",
@@ -26,10 +26,10 @@ const doctors = [
     name: "Dr. M. Alagammai",
     qualification: "BDS, MDS",
     specialty: "Prosthodontist & Implantologist",
-    experience: "8+ Years",
+    experience: "10+ Years",
     rating: "4.8",
     image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329942/Dr_M._Alagammai_MDS_Prosthodontist_and_Implantologist_gnynwt.png",
-    about: "Specialized in restoring smiles through high-quality crowns, bridges, dentures, and advanced implant prosthetics."
+    about: "Specialized in restoring smiles through high-quality crowns, bridges, and advanced implant prosthetics."
   },
   {
     name: "Dr. Saravana Kumar",
@@ -38,7 +38,7 @@ const doctors = [
     experience: "12+ Years",
     rating: "4.9",
     image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329936/Dr.saravana_kumar_MDS_Oral_surgey_saxpzc.png",
-    about: "Highly skilled in painless wisdom tooth extractions, jaw surgeries, and complex surgical procedures with precision."
+    about: "Highly skilled in painless wisdom tooth extractions and jaw surgeries with precision."
   },
   {
     name: "Dr. Raaja Sreepathy CS",
@@ -47,7 +47,7 @@ const doctors = [
     experience: "10+ Years",
     rating: "4.9",
     image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329932/Dr._Raaja_Sreepathy_CS_Periodontist_and_Implantologist_azhl4h.png",
-    about: "Expert in laser gum surgeries, bone grafting, and treating complex periodontal diseases to save loose teeth."
+    about: "Expert in laser gum surgeries and treating complex periodontal diseases to save loose teeth."
   },
   {
     name: "Dr. Nidhyavarshini Gurubaran",
@@ -56,140 +56,166 @@ const doctors = [
     experience: "7+ Years",
     rating: "4.8",
     image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329939/Nidhyavarshini_Gurubaran_Orthodontist_p0uorv.png",
-    about: "Creating perfect smiles with traditional braces, ceramic braces, and modern clear aligners for all age groups."
-  },
-  {
-    name: "Dr. Vijayalakshmi",
-    qualification: "BDS, MDS",
-    specialty: "Oral Surgeon",
-    experience: "9+ Years",
-    rating: "4.8",
-    image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329940/Vijayalakshmi_Oral_surgeon._cbayd2.png",
-    about: "Focused on surgical extractions, impactions, and comprehensive surgical care with minimal post-operative discomfort."
-  },
-  {
-    name: "Dr. Lakshman",
-    qualification: "BDS, Fellowship in Endodontics",
-    specialty: "Endodontist",
-    experience: "9+ Years",
-    rating: "4.9",
-    image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329927/DR.Lakshman_BDS_Fellowship_in_Endodontics_FDS_bftvuc.png",
-    about: "Specialized in painless root canal treatments and advanced microscopic endodontics for saving natural teeth."
-  },
-  {
-    name: "Dr. Padmavathy Srinivasan",
-    qualification: "BDS",
-    specialty: "General Dentist",
-    experience: "5+ Years",
-    rating: "4.8",
-    image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329932/Dr.padmavathy_srinivasan_bds_arxwjs.png",
-    about: "Focused on preventive dentistry, pain-free extractions, and high-quality restorative treatments for lasting results."
+    about: "Creating perfect smiles with traditional braces and modern clear aligners for all age groups."
   }
 ];
 
+// Duplicate for infinite loop
+const displayDoctors = [...doctors, ...doctors, ...doctors];
+
 export default function OurDoctors() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   const slideLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: -340, behavior: 'smooth' });
     }
   };
 
   const slideRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: 340, behavior: 'smooth' });
     }
   };
 
-  // Automatic sliding effect
   useEffect(() => {
+    if (isPaused) return;
+
     const interval = setInterval(() => {
       if (scrollRef.current) {
         const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
         
-        // If we reached the end (accounting for a 10px rounding buffer)
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        // Reset to middle if we reach near the end to create infinite feel
+        if (scrollLeft + clientWidth >= scrollWidth - 100) {
+          scrollRef.current.scrollTo({ left: scrollWidth / 3, behavior: 'auto' });
         } else {
-          scrollRef.current.scrollBy({ left: 424, behavior: 'smooth' }); // 400 width + 24 gap
+          scrollRef.current.scrollBy({ left: 340, behavior: 'smooth' });
         }
       }
-    }, 4000); // Slides every 4 seconds
+    }, 3500);
 
     return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // Initial scroll to middle for infinite effect
+  useEffect(() => {
+    if (scrollRef.current) {
+      const { scrollWidth } = scrollRef.current;
+      scrollRef.current.scrollTo({ left: scrollWidth / 3, behavior: 'auto' });
+    }
   }, []);
 
   return (
-    <section id="doctors" className="py-24 bg-dark relative overflow-hidden">
-      <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px] pointer-events-none" />
-      
+    <section id="doctors" className="py-24 bg-[#0F172A] relative overflow-hidden">
+      {/* Clinical Tech Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#06B6D4 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+        <div className="absolute top-1/4 -right-24 w-96 h-96 bg-cyan/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 -left-24 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <span className="inline-flex items-center px-4 py-1.5 bg-secondary/20 text-secondary text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
-              Our Experts
-            </span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-extrabold text-white">Meet Your Smile Architects</h2>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex gap-3">
-            <button onClick={slideLeft} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-dark transition-colors z-10 relative">
-              <ArrowRight size={20} className="rotate-180" />
+        <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
+          <div className="text-center md:text-left">
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan/10 border border-cyan/20 rounded-full mb-6"
+            >
+              <ShieldCheck size={14} className="text-cyan" />
+              <span className="text-cyan text-[10px] font-bold tracking-[0.2em] uppercase">Board Certified Specialists</span>
+            </motion.div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight"
+            >
+              Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-secondary">Expert Clinicians</span>
+            </motion.h2>
+          </div>
+
+          <div className="flex gap-4">
+            <button onClick={slideLeft} className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-cyan hover:border-cyan transition-all group">
+              <ArrowRight size={20} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
             </button>
-            <button onClick={slideRight} className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white hover:bg-secondary-light transition-colors z-10 relative">
-              <ArrowRight size={20} />
+            <button onClick={slideRight} className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-cyan hover:border-cyan transition-all group">
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Horizontal Carousel */}
         <div 
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          className="flex gap-6 sm:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-12 pt-4"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {doctors.map((doctor, index) => (
+          {displayDoctors.map((doctor, index) => (
             <motion.div 
-              key={index} 
-              initial={{ opacity: 0, y: 30 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ delay: index * 0.1 }}
-              className="snap-center shrink-0 w-full sm:w-[400px] group"
+              key={index}
+              className="snap-center shrink-0 w-[75vw] sm:w-[320px] group"
             >
-              <div className="relative rounded-[2rem] overflow-hidden bg-primary-light border border-white/10 hover:border-secondary/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(37,99,235,0.15)] h-full flex flex-col">
-                <div className="relative h-[300px] overflow-hidden">
-                  <img src={doctor.image} alt={doctor.name} className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary-light to-transparent opacity-90" />
-                  <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1 text-white text-sm font-bold border border-white/10">
-                    <Star size={14} className="text-yellow-400 fill-yellow-400" /> {doctor.rating}
+              <div className="relative h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:border-cyan/50 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] flex flex-col">
+                
+                {/* Doctor Image Container - COMPACT HEIGHT */}
+                <div className="relative h-[240px] sm:h-[340px] overflow-hidden">
+                  <img 
+                    src={doctor.image} 
+                    alt={doctor.name} 
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" 
+                  />
+                  
+                  {/* High-End Overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-90" />
+                  
+                  {/* Rating Badge - COMPACT */}
+                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 px-2.5 py-1 bg-black/40 backdrop-blur-md rounded-lg border border-white/10 flex items-center gap-1.5">
+                    <Star size={12} className="text-yellow-400 fill-yellow-400" />
+                    <span className="text-white text-[10px] font-bold">{doctor.rating}</span>
+                  </div>
+
+                  {/* Experience Floating Badge - COMPACT */}
+                  <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 px-3 py-1.5 bg-cyan backdrop-blur-md rounded-xl shadow-xl flex items-center gap-2">
+                    <Calendar size={12} className="text-white" />
+                    <span className="text-white text-[9px] font-bold uppercase tracking-wider">{doctor.experience}</span>
                   </div>
                 </div>
 
-                <div className="p-8 pt-0 relative z-10 flex-1 flex flex-col">
-                  <div className="-mt-8 mb-4 flex justify-between items-end">
-                    <div className="w-16 h-16 rounded-2xl bg-secondary/20 backdrop-blur-xl flex items-center justify-center border border-white/20 shadow-lg text-secondary">
-                      <GraduationCap size={28} />
-                    </div>
+                {/* Content Area - COMPACT PADDING */}
+                <div className="p-6 sm:p-8 pt-3 sm:pt-4 flex-1 flex flex-col">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Heart size={12} className="text-secondary" />
+                    <span className="text-secondary text-[9px] font-bold uppercase tracking-widest italic">{doctor.qualification}</span>
                   </div>
                   
-                  <h3 className="font-bold text-2xl text-white mb-1">{doctor.name}</h3>
-                  <div className="text-cyan font-semibold text-sm mb-4">{doctor.specialty}</div>
-                  
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
-                    {doctor.about}
+                  <h3 className="text-white font-bold text-xl sm:text-2xl mb-1 group-hover:text-cyan transition-colors leading-tight">
+                    {doctor.name}
+                  </h3>
+                  <div className="text-cyan/80 font-medium text-xs sm:text-sm mb-4">
+                    {doctor.specialty}
+                  </div>
+
+                  <p className="text-white/40 text-[11px] sm:text-sm leading-relaxed mb-6 flex-1 italic line-clamp-3">
+                    "{doctor.about}"
                   </p>
 
-                  <div className="flex items-center gap-4 text-sm text-white/80 font-medium mb-8">
-                    <div className="flex items-center gap-1.5"><Award size={16} className="text-secondary" /> {doctor.qualification}</div>
-                    <div className="w-1 h-1 rounded-full bg-gray-500" />
-                    <div className="flex items-center gap-1.5"><Calendar size={16} className="text-secondary" /> {doctor.experience}</div>
-                  </div>
-
-                  <Link to="/book-appointment" className="w-full py-4 rounded-xl border border-white/20 text-white font-bold text-center hover:bg-secondary hover:border-secondary transition-all flex items-center justify-center gap-2 group-hover:shadow-lg">
-                    Book Appointment <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <Link 
+                    to="/book-appointment" 
+                    className="inline-flex items-center gap-3 text-white font-bold text-xs sm:text-sm group/btn"
+                  >
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover/btn:bg-cyan group-hover/btn:border-cyan transition-all">
+                      <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </div>
+                    <span>Consult Dr. {doctor.name.split(' ')[doctor.name.split(' ').length - 1]}</span>
                   </Link>
                 </div>
+
+                {/* Professional Decoration */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
               </div>
             </motion.div>
           ))}

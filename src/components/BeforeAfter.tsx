@@ -51,7 +51,7 @@ export default function BeforeAfter() {
   const [activeCase, setActiveCase] = useState(0);
   
   return (
-    <section id="before-after" className="py-24 bg-white relative overflow-hidden">
+    <section id="before-after" className="py-16 lg:py-20 bg-white relative overflow-hidden">
       <div className="absolute top-0 left-[-20%] w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -59,14 +59,14 @@ export default function BeforeAfter() {
           <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-secondary/10 text-secondary text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
             <Sparkles size={14} /> Real Results
           </span>
-          <h2 className="font-serif text-4xl sm:text-5xl font-extrabold text-primary mb-6">Smile Transformations</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto font-medium">See the remarkable transformations our patients have experienced. Drag the slider to compare.</p>
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mb-4">Smile Transformations</h2>
+          <p className="text-gray-600 text-base lg:text-lg max-w-2xl mx-auto font-medium">See the remarkable transformations our patients have experienced. Drag the slider to compare.</p>
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {cases.map((c, index) => (
             <button key={c.id} onClick={() => setActiveCase(index)}
-              className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 ${activeCase === index ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105' : 'bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-primary'}`}
+              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 ${activeCase === index ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105' : 'bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-primary'}`}
             >{c.title}</button>
           ))}
         </div>
@@ -83,8 +83,8 @@ export default function BeforeAfter() {
             >
               <ComparisonSlider beforeImage={cases[activeCase].beforeImage} afterImage={cases[activeCase].afterImage} />
               <div className="text-center mt-8 px-4">
-                <h3 className="text-2xl font-bold text-primary mb-2">{cases[activeCase].title}</h3>
-                <p className="text-gray-500 font-medium">{cases[activeCase].description}</p>
+                <h3 className="text-xl font-bold text-primary mb-2">{cases[activeCase].title}</h3>
+                <p className="text-sm text-gray-500 font-medium">{cases[activeCase].description}</p>
               </div>
             </motion.div>
           </AnimatePresence>

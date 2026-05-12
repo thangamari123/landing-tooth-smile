@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowLeft, ArrowRight, User } from 'lucide-react';
 import { getBlogBySlug, getRelatedBlogs } from '../lib/blogs';
-import WhatsAppButton from '../components/WhatsAppButton';
+import EnquiryButton from '../components/EnquiryButton';
 
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -61,7 +61,7 @@ export default function BlogDetailPage() {
             <h3 className="font-serif text-xl font-bold text-[#1E2A78] mb-2">Need Professional Dental Care?</h3>
             <p className="text-[#333333]/60 mb-5">Book a consultation with Dr. R. R. Murali Karthik at Tooth & Smile Advanced Dentistry.</p>
             <div className="flex flex-wrap gap-3">
-              <WhatsAppButton label="Book Appointment" variant="primary" />
+              <EnquiryButton label="Book Appointment" variant="primary" />
               <a href="tel:9551120208" className="inline-flex items-center gap-2 px-6 py-3.5 border border-[#1E2A78]/15 text-[#1E2A78] font-semibold rounded-xl hover:border-[#00A8A8] hover:text-[#00A8A8] transition-all">
                 Call 95511 20208
               </a>

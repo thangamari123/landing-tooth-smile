@@ -22,11 +22,11 @@ export default function WhatsAppButton({
 
   const variants = {
     primary:
-      'inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#00A8A8] hover:bg-[#008f8f] text-white font-semibold text-sm tracking-wide transition-all hover:shadow-lg rounded-xl',
+      'inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-secondary hover:bg-secondary-light text-white font-bold text-sm tracking-wide transition-all hover:shadow-lg rounded-xl',
     outline:
-      'inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-[#00A8A8] text-[#00A8A8] hover:bg-[#00A8A8] hover:text-white font-semibold text-sm tracking-wide transition-all rounded-xl',
+      'inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-bold text-sm tracking-wide transition-all rounded-xl',
     large:
-      'inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#00A8A8] hover:bg-[#008f8f] text-white font-semibold text-base tracking-wide transition-all hover:shadow-lg hover:-translate-y-0.5 rounded-xl',
+      'inline-flex items-center justify-center gap-3 px-8 py-4 bg-secondary hover:bg-secondary-light text-white font-bold text-base tracking-wide transition-all hover:shadow-lg hover:-translate-y-0.5 rounded-xl',
   };
 
   return (

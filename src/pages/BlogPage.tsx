@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight, ChevronDown } from 'lucide-react';
 import { blogPosts } from '../lib/blogs';
-import WhatsAppButton from '../components/WhatsAppButton';
 
 export default function BlogPage() {
   return (

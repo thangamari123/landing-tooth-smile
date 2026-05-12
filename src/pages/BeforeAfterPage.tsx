@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { treatments } from '../lib/treatments';
-import WhatsAppButton from '../components/WhatsAppButton';
+import EnquiryButton from '../components/EnquiryButton';
 
 export default function BeforeAfterPage() {
   return (
@@ -61,7 +61,7 @@ export default function BeforeAfterPage() {
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">Start Your Transformation</h2>
             <p className="text-white/70 mb-8">Book a consultation with Dr. R. R. Murali Karthik and see what is possible for your smile.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <WhatsAppButton label="Book via WhatsApp" variant="large" />
+              <EnquiryButton label="Book Appointment" variant="large" />
               <a href="tel:9551120208" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/30 text-white font-medium tracking-wide hover:border-white/60 transition-all rounded-xl">
                 Call 95511 20208
               </a>

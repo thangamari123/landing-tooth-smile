@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Playfair Display', ui-serif, Georgia, serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-manrope: 'Manrope', sans-serif;
@@ -39,8 +39,15 @@
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
+  font-size: 16px;
+  zoom: 0.8;
+  -moz-transform: scale(0.8);
+  -moz-transform-origin: top center;
+}
+
+section[id] {
+  scroll-margin-top: 100px;
 }
 
 body {
@@ -111,4 +118,13 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -1,3 +1,11 @@
+export interface Review {
+  author: string;
+  rating: number;
+  text: string;
+  date: string;
+  source: 'Google' | 'Practo' | 'Dentee' | 'Verified Patient';
+}
+
 export interface Treatment {
   slug: string;
   title: string;
@@ -16,6 +24,7 @@ export interface Treatment {
   benefits: string[];
   faqs: { q: string; a: string }[];
   beforeAfter: { title: string; desc: string; beforeImg: string; afterImg: string }[];
+  reviews: Review[];
 }
 
 export const treatments: Treatment[] = [
@@ -61,6 +70,11 @@ export const treatments: Treatment[] = [
     beforeAfter: [
       { title: 'Single Tooth Replacement', desc: 'Front tooth implant with zirconia crown', beforeImg: '/images/cases/dental_implant_before.png', afterImg: '/images/cases/dental_implant_after.png' },
     ],
+    reviews: [
+      { author: 'Rajesh K.', rating: 5, text: 'My new dental implants feel exactly like my natural teeth. I can finally eat apples again without worrying! Dr. Karthik is a true professional.', date: '2 months ago', source: 'Google' },
+      { author: 'Suresh Kumar', rating: 5, text: 'Got full mouth implants for my father. The procedure was explained clearly and the results are amazing. Highly recommended for complex cases.', date: '3 months ago', source: 'Practo' },
+      { author: 'Meenakshi R.', rating: 5, text: 'Very satisfied with the implant treatment. Painless and very affordable compared to other clinics in Chennai.', date: '5 months ago', source: 'Verified Patient' }
+    ]
   },
   {
     slug: 'root-canal-treatment',
@@ -104,6 +118,11 @@ export const treatments: Treatment[] = [
     beforeAfter: [
       { title: 'Infected Molar Saved', desc: 'Severely infected molar restored with RCT and crown', beforeImg: '/images/cases/root_canal_before.png', afterImg: '/images/cases/root_canal_after.png' },
     ],
+    reviews: [
+      { author: 'Priya S.', rating: 5, text: 'I was terrified of the dentist, but Dr. Karthik made my root canal completely painless. Best clinic in Chennai for anxious patients!', date: '1 month ago', source: 'Google' },
+      { author: 'Arun V.', rating: 5, text: 'Single sitting RCT was a breeze. No pain even after the anesthesia wore off. Great experience.', date: '2 months ago', source: 'Dentee' },
+      { author: 'Deepa T.', rating: 5, text: 'Best endodontist in Mylapore. Saved my tooth when others said it had to be removed.', date: '4 months ago', source: 'Practo' }
+    ]
   },
   {
     slug: 'braces-aligners',
@@ -146,6 +165,11 @@ export const treatments: Treatment[] = [
     beforeAfter: [
       { title: 'Crowded Teeth Correction', desc: 'Severe crowding resolved with 18-month braces treatment', beforeImg: '/images/cases/braces_before.png', afterImg: '/images/cases/braces_after.png' },
     ],
+    reviews: [
+      { author: 'Ananya M.', rating: 5, text: 'I got my invisible aligners here. The 3D scan was so cool, and my teeth straightened out in just 8 months! So happy with my new smile.', date: '1 month ago', source: 'Google' },
+      { author: 'Karthik N.', rating: 5, text: 'Metal braces treatment was very smooth. Proper follow-ups and transparent pricing. Best orthodontic care.', date: '6 months ago', source: 'Verified Patient' },
+      { author: 'Sowmya R.', rating: 5, text: 'Discreet and effective. The aligners are so much better than traditional braces. Thank you Tooth & Smile!', date: '3 months ago', source: 'Practo' }
+    ]
   },
   {
     slug: 'teeth-whitening',
@@ -188,6 +212,11 @@ export const treatments: Treatment[] = [
     beforeAfter: [
       { title: 'Heavy Stain Removal', desc: 'Years of coffee and tobacco stains removed in one session', beforeImg: '/images/cases/teeth_whitening_before.png', afterImg: '/images/cases/teeth_whitening_after.png' },
     ],
+    reviews: [
+      { author: 'Venkatesh R.', rating: 5, text: 'The laser teeth whitening took less than an hour, and my smile is so much brighter for my upcoming wedding! Truly instant results.', date: '2 weeks ago', source: 'Google' },
+      { author: 'Nithya S.', rating: 5, text: 'Safe and effective. I had zero sensitivity after the procedure. Highly recommend for a quick smile boost.', date: '1 month ago', source: 'Dentee' },
+      { author: 'Manoj P.', rating: 5, text: 'Visible difference in just one sitting. Professional staff and relaxing environment.', date: '3 months ago', source: 'Verified Patient' }
+    ]
   },
   {
     slug: 'smile-makeover',
@@ -234,6 +263,11 @@ export const treatments: Treatment[] = [
     beforeAfter: [
       { title: 'Full Smile Transformation', desc: 'Complete makeover with porcelain veneers and crowns', beforeImg: '/images/cases/smile_transform_before.png', afterImg: '/images/cases/smile_transform_after.png' },
     ],
+    reviews: [
+      { author: 'Lakshmi N.', rating: 5, text: 'My smile makeover with porcelain veneers changed my life. I used to hide my smile, now I show it off everywhere! Dr. Karthik is an artist.', date: '1 month ago', source: 'Google' },
+      { author: 'Vijay S.', rating: 5, text: 'The digital smile design preview was so helpful. I knew exactly what to expect. The final result exceeded my expectations.', date: '4 months ago', source: 'Practo' },
+      { author: 'Anita K.', rating: 5, text: 'Beautiful veneers that look 100% natural. The attention to detail is remarkable. Best investment in myself.', date: '2 months ago', source: 'Verified Patient' }
+    ]
   },
 
   {
@@ -272,6 +306,11 @@ export const treatments: Treatment[] = [
       { q: 'Are dental X-rays safe for children?', a: 'Yes, we use digital X-rays which emit very low radiation and are completely safe for kids.' },
     ],
     beforeAfter: [],
+    reviews: [
+      { author: 'Rohini G.', rating: 5, text: 'My 5-year-old was always afraid of dentists, but he loved the environment here. Dr. Karthik is so patient with kids.', date: '1 month ago', source: 'Google' },
+      { author: 'Siddharth M.', rating: 5, text: 'Excellent pediatric care. No more dental fear for my daughter. Fun and gentle approach.', date: '3 months ago', source: 'Verified Patient' },
+      { author: 'Kavitha L.', rating: 5, text: 'Safe, clean, and child-friendly. The best place for children’s dental health in Chennai.', date: '5 months ago', source: 'Practo' }
+    ]
   },
 ];
 

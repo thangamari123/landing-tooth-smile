@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { GraduationCap, Award, Stethoscope, BookOpen, MapPin, Phone } from 'lucide-react';
-import WhatsAppButton from './WhatsAppButton';
+import EnquiryButton from './EnquiryButton';
 
 export default function DoctorCard() {
   return (
@@ -51,7 +51,7 @@ export default function DoctorCard() {
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <WhatsAppButton label="Book Consultation" variant="primary" />
+                  <EnquiryButton label="Book Consultation" variant="primary" />
                   <a href="tel:9551120208" className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#F2F4F7] text-[#333333] text-sm font-semibold rounded-xl hover:border-[#00A8A8] hover:text-[#00A8A8] transition-all">
                     <Phone size={15} />Call Now
                   </a>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import WhatsAppButton from './WhatsAppButton';
 
 const faqs = [
   { q: 'Is the implant procedure painful?', a: 'No. The procedure is performed under local anesthesia, and most patients report minimal discomfort. We also offer sedation options for anxious patients.' },
@@ -18,9 +17,9 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 bg-[#F2F4F7]">
+    <section id="faq" className="py-16 lg:py-24 bg-[#F2F4F7]">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-semibold rounded-full mb-4">FAQ</span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1E2A78] mb-4">Frequently Asked Questions</h2>
           <p className="text-[#333333]/60 max-w-xl mx-auto">Find answers to common questions about our treatments, procedures, and clinic policies.</p>
