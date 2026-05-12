@@ -41,8 +41,8 @@
 html {
   overflow-x: hidden;
   font-size: 16px;
-  zoom: 0.8;
-  -moz-transform: scale(0.8);
+  zoom: 0.9;
+  -moz-transform: scale(0.9);
   -moz-transform-origin: top center;
 }
 

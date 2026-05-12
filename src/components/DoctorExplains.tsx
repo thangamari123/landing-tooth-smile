@@ -43,11 +43,17 @@ export default function DoctorExplains() {
   const [activeReel, setActiveReel] = useState<string | null>(null);
 
   const slideLeft = () => {
-    if (scrollRef.current) scrollRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+    if (scrollRef.current) {
+      const scrollAmount = window.innerWidth < 640 ? scrollRef.current.clientWidth * 0.85 : 280;
+      scrollRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
   };
 
   const slideRight = () => {
-    if (scrollRef.current) scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+    if (scrollRef.current) {
+      const scrollAmount = window.innerWidth < 640 ? scrollRef.current.clientWidth * 0.85 : 280;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -55,30 +61,32 @@ export default function DoctorExplains() {
     const interval = setInterval(() => {
       if (scrollRef.current) {
         const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        const scrollAmount = window.innerWidth < 640 ? clientWidth * 0.85 : 280;
+        
         if (scrollLeft + clientWidth >= scrollWidth - 10) {
           scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
-          scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+          scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
       }
-    }, 4500);
+    }, 4000);
     return () => clearInterval(interval);
   }, [activeReel]);
 
   return (
-    <section className="py-20 bg-[#0A1128] overflow-hidden relative">
+    <section className="py-16 sm:py-24 bg-[#0A1128] overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#1E2A78_0%,#0A1128_100%)] opacity-40" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
-          <div className="text-left">
+        <div className="flex flex-col md:flex-row items-center justify-between mb-10 sm:mb-16 gap-8 text-center md:text-left">
+          <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 text-cyan text-[10px] font-bold tracking-widest uppercase rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 text-cyan text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase rounded-full mb-4 sm:mb-6"
             >
-              <Instagram size={14} /> Instagram Reels
+              <Instagram size={12} /> Clinical Educational Series
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -88,9 +96,10 @@ export default function DoctorExplains() {
             >
               Doctor <span className="text-cyan">Explains</span>
             </motion.h2>
+            <p className="text-white/50 text-xs sm:text-sm font-medium">Expert dental advice delivered in bite-sized videos.</p>
           </div>
 
-          <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex gap-3">
+          <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="hidden sm:flex gap-3">
             <button onClick={slideLeft} className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-cyan transition-all">
               <ChevronLeft size={20} />
             </button>
@@ -100,37 +109,44 @@ export default function DoctorExplains() {
           </motion.div>
         </div>
 
+        {/* Compact Horizontal Slider */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-10 scrollbar-hide pt-4"
+          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 scrollbar-hide pt-2 -mx-4 px-4 sm:mx-0 sm:px-0"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {reels.map((reel, i) => (
             <motion.div
               key={reel.id}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="snap-center shrink-0 w-[70vw] sm:w-[280px]"
+              transition={{ delay: i * 0.05 }}
+              className="snap-center shrink-0 w-[85vw] sm:w-[260px]"
             >
               <button
                 onClick={() => setActiveReel(reel.reelId)}
-                className="w-full relative aspect-[9/16] rounded-[2rem] overflow-hidden border-2 border-white/5 shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-cyan/30"
+                className="w-full relative aspect-[9/16] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan/40 group"
               >
                 <img
                   src={reel.thumbnail}
                   alt="Instagram Reel"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 hover:opacity-90"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute top-4 right-4">
-                  <Instagram size={20} className="text-white/60" />
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                
+                {/* Overlay Play UI */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-[#E4405F] hover:border-[#E4405F] transition-all duration-300">
-                    <Play size={28} fill="currentColor" className="text-white ml-1" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-cyan group-hover:border-cyan group-hover:scale-110 transition-all duration-500">
+                    <Play size={20} fill="currentColor" className="text-white ml-1 sm:size-[24px]" />
                   </div>
+                </div>
+
+                <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#FFD600] via-[#FF0069] to-[#7600C5] flex items-center justify-center p-1">
+                    <Instagram size={12} className="text-white" />
+                  </div>
+                  <span className="text-[10px] text-white font-bold tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity">Watch Now</span>
                 </div>
               </button>
             </motion.div>
@@ -141,23 +157,23 @@ export default function DoctorExplains() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-4"
+          className="mt-12 flex flex-wrap items-center justify-center gap-4"
         >
           <a
             href="https://www.instagram.com/toothsmiledentalclinic/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#E4405F] text-white font-bold text-xs rounded-xl hover:bg-[#D62976] transition-all shadow-xl hover:-translate-y-1"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/5 border border-white/10 text-white font-bold text-xs rounded-xl hover:bg-[#E4405F] transition-all shadow-xl group"
           >
-            Instagram Reels <Instagram size={16} />
+            <Instagram size={16} className="group-hover:scale-110 transition-transform" /> Follow on Instagram
           </a>
           <a
             href="https://www.youtube.com/@toothandsmiledentalclinic-7818/featured"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF0000] text-white font-bold text-xs rounded-xl hover:bg-[#CC0000] transition-all shadow-xl hover:-translate-y-1"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/5 border border-white/10 text-white font-bold text-xs rounded-xl hover:bg-[#FF0000] transition-all shadow-xl group"
           >
-            YouTube Channel <Youtube size={16} />
+            <Youtube size={16} className="group-hover:scale-110 transition-transform" /> YouTube Channel
           </a>
         </motion.div>
       </div>
@@ -171,32 +187,32 @@ export default function DoctorExplains() {
             className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0A1128]/95 p-4 backdrop-blur-2xl"
             onClick={() => setActiveReel(null)}
           >
-            {/* Close Button */}
             <button
-              className="absolute top-6 right-6 sm:top-10 sm:right-10 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-white/70 hover:text-white hover:bg-[#E4405F] transition-all z-[110] group"
+              className="absolute top-6 right-6 w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-white/70 hover:text-white hover:bg-cyan transition-all z-[110]"
               onClick={() => setActiveReel(null)}
             >
-              <X size={24} className="group-hover:rotate-90 transition-transform duration-300" />
+              <X size={20} />
             </button>
 
-            {/* Reel Container */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-[400px] h-[75vh] sm:h-[85vh] bg-black rounded-[2.5rem] overflow-hidden shadow-[0_0_80px_rgba(228,64,95,0.2)] border border-white/10"
+              className="relative w-full max-w-[380px] h-[80vh] bg-black rounded-[2rem] overflow-hidden shadow-2xl border border-white/10"
               onClick={e => e.stopPropagation()}
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                <Instagram size={48} className="text-white/10 mb-4 animate-pulse" />
-                <p className="text-white/30 text-sm mb-6">If the video doesn't load, it may be restricted by Instagram's security policy.</p>
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-zinc-950">
+                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
+                  <Instagram size={32} className="text-white/20 animate-pulse" />
+                </div>
+                <p className="text-white/40 text-xs mb-8 leading-relaxed">Opening secure connection to Instagram...<br/>If the video doesn't load, please use the button below.</p>
                 <a
                   href={`https://www.instagram.com/reels/${activeReel}/`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-[#E4405F] text-white font-bold text-xs rounded-xl shadow-lg"
+                  className="px-8 py-4 bg-cyan text-white font-bold text-xs rounded-xl shadow-lg hover:bg-cyan/90 transition-all"
                 >
-                  Watch on Instagram
+                  View Direct on Instagram
                 </a>
               </div>
               <iframe
@@ -207,14 +223,8 @@ export default function DoctorExplains() {
                 scrolling="no"
                 allowTransparency={true}
                 className="absolute inset-0 z-10"
-                style={{ minHeight: '100%' }}
               ></iframe>
             </motion.div>
-
-            {/* Background Branding */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 text-white/20 font-bold text-xs tracking-[0.3em] uppercase pointer-events-none">
-              <Instagram size={14} /> Clinical Reels Insight
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

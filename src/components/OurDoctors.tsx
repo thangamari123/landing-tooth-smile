@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, GraduationCap, Award, Calendar, Star, ShieldCheck, Heart } from 'lucide-react';
+import { ArrowRight, Calendar, Star, ShieldCheck, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useRef, useEffect, useState } from 'react';
 
 const doctors = [
   {
@@ -60,54 +59,11 @@ const doctors = [
   }
 ];
 
-// Duplicate for infinite loop
-const displayDoctors = [...doctors, ...doctors, ...doctors];
+
 
 export default function OurDoctors() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const slideLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -340, behavior: 'smooth' });
-    }
-  };
-
-  const slideRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 340, behavior: 'smooth' });
-    }
-  };
-
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-        
-        // Reset to middle if we reach near the end to create infinite feel
-        if (scrollLeft + clientWidth >= scrollWidth - 100) {
-          scrollRef.current.scrollTo({ left: scrollWidth / 3, behavior: 'auto' });
-        } else {
-          scrollRef.current.scrollBy({ left: 340, behavior: 'smooth' });
-        }
-      }
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  // Initial scroll to middle for infinite effect
-  useEffect(() => {
-    if (scrollRef.current) {
-      const { scrollWidth } = scrollRef.current;
-      scrollRef.current.scrollTo({ left: scrollWidth / 3, behavior: 'auto' });
-    }
-  }, []);
-
   return (
-    <section id="doctors" className="py-24 bg-[#0F172A] relative overflow-hidden">
+    <section id="doctors" className="py-16 sm:py-24 bg-[#0F172A] relative overflow-hidden">
       {/* Clinical Tech Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#06B6D4 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
@@ -116,106 +72,125 @@ export default function OurDoctors() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
-          <div className="text-center md:text-left">
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan/10 border border-cyan/20 rounded-full mb-6"
-            >
-              <ShieldCheck size={14} className="text-cyan" />
-              <span className="text-cyan text-[10px] font-bold tracking-[0.2em] uppercase">Board Certified Specialists</span>
-            </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight"
-            >
-              Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-secondary">Expert Clinicians</span>
-            </motion.h2>
-          </div>
-
-          <div className="flex gap-4">
-            <button onClick={slideLeft} className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-cyan hover:border-cyan transition-all group">
-              <ArrowRight size={20} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
-            </button>
-            <button onClick={slideRight} className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-cyan hover:border-cyan transition-all group">
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
+        <div className="text-center mb-12 sm:mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3 py-1 bg-cyan/10 border border-cyan/20 rounded-full mb-4"
+          >
+            <ShieldCheck size={12} className="text-cyan" />
+            <span className="text-cyan text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase">Board Certified Specialists</span>
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight"
+          >
+            Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-secondary">Expert Clinicians</span>
+          </motion.h2>
         </div>
 
-        <div 
-          ref={scrollRef}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          className="flex gap-6 sm:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-12 pt-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {displayDoctors.map((doctor, index) => (
+        {/* Mobile View: Compact Horizontal Slider */}
+        <div className="sm:hidden -mx-4 px-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-4 pb-8">
+          {doctors.map((doctor, index) => (
             <motion.div 
               key={index}
-              className="snap-center shrink-0 w-[75vw] sm:w-[320px] group"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="snap-center shrink-0 w-[280px]"
             >
-              <div className="relative h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:border-cyan/50 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] flex flex-col">
-                
-                {/* Doctor Image Container - COMPACT HEIGHT */}
-                <div className="relative h-[240px] sm:h-[340px] overflow-hidden">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden flex flex-col h-full">
+                <div className="relative h-64 overflow-hidden">
+                  <img src={doctor.image} alt={doctor.name} className="w-full h-full object-cover object-top" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80" />
+                  <div className="absolute top-3 left-3 px-2 py-0.5 bg-black/40 backdrop-blur-md rounded-lg border border-white/10 flex items-center gap-1">
+                    <Star size={10} className="text-yellow-400 fill-yellow-400" />
+                    <span className="text-white text-[10px] font-bold">{doctor.rating}</span>
+                  </div>
+                  <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-cyan rounded-lg flex items-center gap-1.5">
+                    <Calendar size={10} className="text-white" />
+                    <span className="text-white text-[9px] font-bold uppercase">{doctor.experience}</span>
+                  </div>
+                </div>
+                <div className="p-5 flex-1 flex flex-col">
+                  <span className="text-secondary text-[8px] font-bold uppercase tracking-[0.2em] mb-1">{doctor.qualification}</span>
+                  <h3 className="text-white font-bold text-lg mb-0.5">{doctor.name}</h3>
+                  <p className="text-cyan/80 text-[11px] font-medium mb-3">{doctor.specialty}</p>
+                  <p className="text-white/40 text-[11px] italic mb-5 line-clamp-2">"{doctor.about}"</p>
+                  <Link to="/book-appointment" className="mt-auto flex items-center gap-2 text-white text-[11px] font-bold group/btn">
+                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover/btn:bg-cyan transition-all">
+                      <ArrowRight size={14} />
+                    </div>
+                    <span>Consult Dr. {doctor.name.split(' ').pop()}</span>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop View: Clean Responsive Grid */}
+        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {doctors.map((doctor, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group"
+            >
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:border-cyan/50 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] flex flex-col h-full">
+                <div className="relative h-80 overflow-hidden">
                   <img 
                     src={doctor.image} 
                     alt={doctor.name} 
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" 
                   />
-                  
-                  {/* High-End Overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-90" />
                   
-                  {/* Rating Badge - COMPACT */}
-                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 px-2.5 py-1 bg-black/40 backdrop-blur-md rounded-lg border border-white/10 flex items-center gap-1.5">
-                    <Star size={12} className="text-yellow-400 fill-yellow-400" />
-                    <span className="text-white text-[10px] font-bold">{doctor.rating}</span>
+                  <div className="absolute top-6 left-6 px-3 py-1 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 flex items-center gap-2">
+                    <Star size={14} className="text-yellow-400 fill-yellow-400" />
+                    <span className="text-white text-xs font-bold">{doctor.rating}</span>
                   </div>
 
-                  {/* Experience Floating Badge - COMPACT */}
-                  <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 px-3 py-1.5 bg-cyan backdrop-blur-md rounded-xl shadow-xl flex items-center gap-2">
-                    <Calendar size={12} className="text-white" />
-                    <span className="text-white text-[9px] font-bold uppercase tracking-wider">{doctor.experience}</span>
+                  <div className="absolute bottom-6 right-6 px-4 py-2 bg-cyan backdrop-blur-md rounded-2xl shadow-xl flex items-center gap-2">
+                    <Calendar size={14} className="text-white" />
+                    <span className="text-white text-[10px] font-bold uppercase tracking-widest">{doctor.experience}</span>
                   </div>
                 </div>
 
-                {/* Content Area - COMPACT PADDING */}
-                <div className="p-6 sm:p-8 pt-3 sm:pt-4 flex-1 flex flex-col">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Heart size={12} className="text-secondary" />
-                    <span className="text-secondary text-[9px] font-bold uppercase tracking-widest italic">{doctor.qualification}</span>
+                <div className="p-8 pt-4 flex-1 flex flex-col">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Heart size={14} className="text-secondary" />
+                    <span className="text-secondary text-[10px] font-bold uppercase tracking-[0.2em] italic">{doctor.qualification}</span>
                   </div>
                   
-                  <h3 className="text-white font-bold text-xl sm:text-2xl mb-1 group-hover:text-cyan transition-colors leading-tight">
+                  <h3 className="text-white font-bold text-2xl mb-1 group-hover:text-cyan transition-colors">
                     {doctor.name}
                   </h3>
-                  <div className="text-cyan/80 font-medium text-xs sm:text-sm mb-4">
+                  <div className="text-cyan/80 font-medium text-sm mb-4">
                     {doctor.specialty}
                   </div>
 
-                  <p className="text-white/40 text-[11px] sm:text-sm leading-relaxed mb-6 flex-1 italic line-clamp-3">
+                  <p className="text-white/40 text-sm leading-relaxed mb-8 flex-1 italic">
                     "{doctor.about}"
                   </p>
 
                   <Link 
                     to="/book-appointment" 
-                    className="inline-flex items-center gap-3 text-white font-bold text-xs sm:text-sm group/btn"
+                    className="inline-flex items-center gap-4 text-white font-bold text-sm group/btn"
                   >
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover/btn:bg-cyan group-hover/btn:border-cyan transition-all">
-                      <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover/btn:bg-cyan group-hover/btn:border-cyan transition-all">
+                      <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
                     </div>
-                    <span>Consult Dr. {doctor.name.split(' ')[doctor.name.split(' ').length - 1]}</span>
+                    <span>Consult Now</span>
                   </Link>
                 </div>
-
-                {/* Professional Decoration */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
               </div>
             </motion.div>
           ))}
