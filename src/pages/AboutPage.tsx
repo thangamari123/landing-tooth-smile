@@ -230,13 +230,30 @@ export default function AboutPage() {
 
           <div className="bg-white rounded-[1.5rem] overflow-hidden shadow-2xl shadow-[#1E2A78]/10 border border-[#1E2A78]/5 w-full">
             <div className="flex flex-col lg:flex-row">
-              {/* Doctor Image & Quote */}
-              <div className="w-full lg:w-2/5 relative bg-[#1E2A78] min-h-[350px] sm:min-h-[450px] lg:min-h-[500px]">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1E2A78] via-transparent to-transparent opacity-90 z-10" />
-                <img src="https://res.cloudinary.com/dcldlvuib/image/upload/v1778329943/Dr._Muralikarthik_Prosthodontist_and_implantologist_ryfwpq.png" alt="Dr. R. Murali Karthik" className="w-full h-full object-cover object-top opacity-90 absolute inset-0" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10 z-20">
-                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl">
-                    <p className="text-white text-lg sm:text-xl italic font-serif leading-relaxed">
+              {/* Doctor Image & Quote - Responsive Layout */}
+              <div className="w-full lg:w-2/5 flex flex-col">
+                <div className="relative bg-[#1E2A78] h-[300px] sm:h-[400px] lg:h-full min-h-[300px] lg:min-h-[500px] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1E2A78]/40 via-transparent to-transparent opacity-90 z-10" />
+                  <img 
+                    src="https://res.cloudinary.com/dcldlvuib/image/upload/v1778329943/Dr._Muralikarthik_Prosthodontist_and_implantologist_ryfwpq.png" 
+                    alt="Dr. R. Murali Karthik" 
+                    className="w-full h-full object-cover object-top opacity-90 transition-transform duration-700 hover:scale-105" 
+                  />
+                  
+                  {/* Desktop Only Quote Overlay */}
+                  <div className="hidden lg:block absolute bottom-0 left-0 right-0 p-10 z-20">
+                    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl">
+                      <p className="text-white text-xl italic font-serif leading-relaxed">
+                        "I believe every patient deserves to smile with confidence and it's my privilege to make that happen."
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile/Tablet Only Quote Block (Below Image) */}
+                <div className="lg:hidden p-6 bg-[#1E2A78]">
+                  <div className="pl-4 border-l-2 border-secondary/50">
+                    <p className="text-white/90 text-base sm:text-lg italic font-serif leading-relaxed">
                       "I believe every patient deserves to smile with confidence and it's my privilege to make that happen."
                     </p>
                   </div>
