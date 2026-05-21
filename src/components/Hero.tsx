@@ -104,7 +104,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-screen overflow-hidden"
+      className="relative w-full overflow-hidden"
       style={{ height: '100dvh', minHeight: '100vh' }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
