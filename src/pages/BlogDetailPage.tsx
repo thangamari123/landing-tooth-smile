@@ -23,11 +23,11 @@ export default function BlogDetailPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative h-[400px] overflow-hidden">
+      <section className="relative h-[450px] sm:h-[480px] overflow-hidden">
         <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1E2A78]/80 via-[#1E2A78]/40 to-transparent" />
         <div className="absolute inset-0 flex items-end">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 w-full">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
               <Link to="/blog" className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm mb-4 transition-colors">
                 <ArrowLeft size={16} />Back to Blog

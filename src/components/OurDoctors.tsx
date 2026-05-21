@@ -63,7 +63,7 @@ const doctors = [
 
 export default function OurDoctors() {
   return (
-    <section id="doctors" className="py-16 sm:py-24 bg-[#0F172A] relative overflow-hidden">
+    <section id="doctors" className="py-10 sm:py-16 bg-[#0F172A] relative overflow-hidden">
       {/* Clinical Tech Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#06B6D4 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
@@ -72,7 +72,7 @@ export default function OurDoctors() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-8 sm:mb-10">
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +120,7 @@ export default function OurDoctors() {
                   <span className="text-secondary text-[8px] font-bold uppercase tracking-[0.2em] mb-1">{doctor.qualification}</span>
                   <h3 className="text-white font-bold text-lg mb-0.5">{doctor.name}</h3>
                   <p className="text-cyan/80 text-[11px] font-medium mb-3">{doctor.specialty}</p>
-                  <p className="text-white/40 text-[11px] italic mb-5 line-clamp-2">"{doctor.about}"</p>
+                  <p className="text-white/40 text-[11px] italic mb-3 line-clamp-2">"{doctor.about}"</p>
                   <Link to="/book-appointment" className="mt-auto flex items-center gap-2 text-white text-[11px] font-bold group/btn">
                     <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover/btn:bg-cyan transition-all">
                       <ArrowRight size={14} />
@@ -177,7 +177,7 @@ export default function OurDoctors() {
                     {doctor.specialty}
                   </div>
 
-                  <p className="text-white/40 text-sm leading-relaxed mb-8 flex-1 italic">
+                  <p className="text-white/40 text-sm leading-relaxed mb-4 flex-1 italic">
                     "{doctor.about}"
                   </p>
 

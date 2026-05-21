@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import BookAppointmentPage from './pages/BookAppointmentPage';
+import ThankYouPage from './pages/ThankYouPage';
 import FloatingCTA from './components/FloatingCTA';
 import Preloader from './components/Preloader';
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route path="/book-appointment" element={<BookAppointmentPage />} />
+          <Route path="/thank-you" element={<ThankYouPage />} />
         </Route>
       </Routes>
       <FloatingCTA />

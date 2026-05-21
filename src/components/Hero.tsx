@@ -1,107 +1,221 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Calendar, Phone, Shield, Star, CheckCircle, Smile } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, Phone, Shield } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Hero() {
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 100]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -100]);
+const SLIDE_DURATION = 4000;
 
+const slides = [
+  {
+    image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329943/Dr._Muralikarthik_Prosthodontist_and_implantologist_ryfwpq.png",
+    alt: "Dr. Muralikarthik – Prosthodontist & Implantologist",
+    heading: "Your Smile Deserves",
+    highlight: "the Best Care.",
+    sub: "Experience world-class, pain-free dentistry with advanced technology.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=85",
+    alt: "Advanced Dental Technology",
+    heading: "State-of-the-Art",
+    highlight: "Digital Equipment.",
+    sub: "Cutting-edge tools for precise, comfortable, and efficient treatments.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1920&q=85",
+    alt: "Painless Dental Treatment",
+    heading: "Comfort-First",
+    highlight: "Painless Dentistry.",
+    sub: "Modern techniques that make every visit relaxed and worry-free.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+    alt: "Happy Patient Smiles",
+    heading: "Over 5,000",
+    highlight: "Happy Healthy Smiles.",
+    sub: "Trusted by thousands of patients across Chennai for beautiful smiles.",
+  },
+];
+
+export default function Hero() {
   const navigate = useNavigate();
-  const scrollToContact = () => {
-    navigate('/book-appointment');
+
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const [paused, setPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const goTo = useCallback((index: number, dir: 1 | -1 = 1) => {
+    setDirection(dir);
+    setCurrent(index);
+    setProgress(0);
+  }, []);
+
+
+
+  // Auto-advance
+  useEffect(() => {
+    if (paused) return;
+    intervalRef.current = setInterval(() => {
+      setDirection(1);
+      setCurrent((prev) => (prev + 1) % slides.length);
+      setProgress(0);
+    }, SLIDE_DURATION);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [paused, current]);
+
+  // Progress bar
+  useEffect(() => {
+    setProgress(0);
+    if (paused) return;
+    const step = 100 / (SLIDE_DURATION / 50);
+    progressRef.current = setInterval(() => {
+      setProgress((p) => Math.min(p + step, 100));
+    }, 50);
+    return () => { if (progressRef.current) clearInterval(progressRef.current); };
+  }, [current, paused]);
+
+  const slideVariants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? '100%' : '-100%',
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.85, ease: [0.25, 0.46, 0.45, 0.94] as [number,number,number,number] },
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? '-15%' : '15%',
+      opacity: 0,
+      transition: { duration: 0.6, ease: 'easeIn' },
+    }),
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (delay: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, delay, ease: 'easeOut' },
+    }),
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-32 pb-32 lg:pt-40 lg:pb-52 overflow-hidden bg-bg-main">
-      {/* Animated background blur lights */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-secondary/10 blur-[100px] animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-cyan/10 blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-[40%] left-[20%] w-[300px] h-[300px] rounded-full bg-accent/10 blur-[80px] animate-pulse" style={{ animationDelay: '4s' }} />
-      </div>
+    <section
+      className="relative w-screen overflow-hidden"
+      style={{ height: '100dvh', minHeight: '100vh', zoom: 1.1112 }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* ── Background Slides ── */}
+      <AnimatePresence initial={false} custom={direction} mode="popLayout">
+        <motion.div
+          key={current}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          className="absolute inset-0"
+        >
+          {/* No zoom - just sliding */}
+          <img
+            src={slides[current].image}
+            alt={slides[current].alt}
+            className="w-full h-full object-cover object-center"
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* ── Dark gradient overlays ── */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/20 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 z-10 pointer-events-none" />
 
-          {/* Left Content */}
-          <div className="max-w-2xl relative z-20">
+
+
+      {/* ── Main content overlay ── */}
+      <div className="relative z-20 h-full flex items-end sm:items-center pb-10 sm:pb-0">
+        <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 w-full">
+          <div className="max-w-2xl mx-auto sm:mx-0 text-center sm:text-left">
+
+            {/* Badge */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`badge-${current}`}
+                custom={0}
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0 }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-md rounded-full mb-4 sm:mb-5 border border-white/25 shadow-sm"
+              >
+                <Shield size={14} className="text-cyan-300" />
+                <span className="text-white/90 text-[10px] sm:text-sm font-bold tracking-widest uppercase">
+                  #1 Premium Dental Clinic in Chennai
+                </span>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Heading */}
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={`h1-${current}`}
+                custom={0.1}
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0 }}
+                className="font-serif text-2xl sm:text-3xl lg:text-5xl font-extrabold text-white leading-[1.1] mb-3 sm:mb-4 tracking-tight drop-shadow-lg"
+              >
+                {slides[current].heading}<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">
+                  {slides[current].highlight}
+                </span>
+              </motion.h1>
+            </AnimatePresence>
+
+            {/* Subtitle */}
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={`sub-${current}`}
+                custom={0.22}
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0 }}
+                className="text-sm sm:text-lg lg:text-xl text-white/80 mb-6 sm:mb-8 leading-relaxed max-w-lg font-medium drop-shadow mx-auto sm:mx-0"
+              >
+                {slides[current].sub}
+              </motion.p>
+            </AnimatePresence>
+
+            {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full mb-6 border border-white/40 shadow-sm"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="flex flex-col xs:flex-row sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start"
             >
-              <Shield size={16} className="text-secondary" />
-              <span className="text-primary text-sm font-bold tracking-wide uppercase">#1 Premium Dental Clinic in Chennai</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold text-primary leading-[1.1] mb-6 tracking-tight"
-            >
-              Your Smile Deserves <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-cyan">
-                the Best Care.
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg font-medium"
-            >
-              Experience world-class, pain-free dentistry with advanced technology. We design perfect smiles tailored just for you.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 mb-6 lg:mb-10"
-            >
-              <button onClick={scrollToContact}
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1"
+              <button
+                onClick={() => navigate('/book-appointment')}
+                className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full shadow-xl shadow-blue-900/40 transition-all hover:-translate-y-1 hover:shadow-2xl text-sm sm:text-base"
               >
                 <Calendar size={18} /> Book an Appointment
               </button>
-              <a href="tel:9551120208"
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-white border border-gray-200 text-primary font-bold rounded-full hover:border-secondary hover:text-secondary transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
+              <a
+                href="tel:9551120208"
+                className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-bold rounded-full transition-all hover:-translate-y-1 hover:shadow-xl text-sm sm:text-base"
               >
                 <Phone size={18} /> Call Us
               </a>
             </motion.div>
-
-
           </div>
-
-          {/* Right Content - Images & Floating Elements */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative block h-[450px] sm:h-[550px] lg:h-[600px] mt-4 lg:mt-0"
-            style={{ y: typeof window !== 'undefined' && window.innerWidth > 1024 ? y1 : 0 }}
-          >
-            {/* Animated Gradient Background Circles */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] lg:w-[450px] lg:h-[450px] rounded-full bg-gradient-to-tr from-secondary/20 to-cyan/20 blur-3xl" />
-
-            <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden border-8 border-white/50 shadow-2xl shadow-primary/10">
-              <img src="https://res.cloudinary.com/dcldlvuib/image/upload/v1778329943/Dr._Muralikarthik_Prosthodontist_and_implantologist_ryfwpq.png" alt="Happy Patient" className="w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
-            </div>
-
-            {/* Doctor Name Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="absolute bottom-8 lg:bottom-12 -right-4 lg:-right-8 bg-white/95 backdrop-blur-xl p-4 lg:p-5 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-white flex items-center gap-3 lg:gap-4 max-w-[280px] lg:max-w-none"
-            >
-              <div className="w-1.5 lg:w-2 h-10 lg:h-12 bg-secondary rounded-full" />
-              <div>
-                <div className="text-lg lg:text-xl font-bold text-primary truncate">Dr. Muralikarthik</div>
-                <div className="text-[10px] lg:text-sm font-bold text-cyan tracking-wide uppercase mt-0.5 truncate">Prosthodontist & Implantologist</div>
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
       </div>
+
+
     </section>
   );
 }

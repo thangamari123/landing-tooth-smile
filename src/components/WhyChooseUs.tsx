@@ -11,7 +11,7 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-16 lg:py-24 relative overflow-hidden bg-white">
+    <section className="py-10 lg:py-16 relative overflow-hidden bg-white">
       {/* Soft gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-bg-main via-white to-cyan/5 pointer-events-none" />
       
@@ -20,13 +20,13 @@ export default function WhyChooseUs() {
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
-          className="text-center mb-12 lg:mb-20"
+          className="text-center mb-8 lg:mb-12"
         >
           <span className="inline-flex px-4 py-1.5 bg-secondary/10 text-secondary text-sm font-bold rounded-full mb-4 tracking-wide uppercase">Why Choose Us</span>
           <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary leading-tight max-w-3xl mx-auto">Elevating Dental Care to the Next Level</h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           
           {/* Left: Doctor Consultation Image */}
           <motion.div 
@@ -38,7 +38,7 @@ export default function WhyChooseUs() {
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-transparent rounded-[2.5rem] blur-2xl transform -translate-x-4 translate-y-4" />
             <div className="relative rounded-[2.5rem] overflow-hidden border border-white shadow-2xl">
-              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Doctor Consultation" className="w-full h-[400px] lg:h-[600px] object-cover" />
+              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Doctor Consultation" className="w-full h-[260px] sm:h-[400px] lg:h-[600px] object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8 text-white">
                 <div className="flex items-center gap-2 mb-2 lg:mb-3">
@@ -64,14 +64,14 @@ export default function WhyChooseUs() {
                     whileInView={{ opacity: 1, x: 0 }} 
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="glass-card flex items-start gap-5 p-6 lg:p-5 rounded-2xl lg:rounded-2xl hover:-translate-y-1 transition-transform cursor-default group"
+                    className="glass-card flex items-start gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl hover:-translate-y-1 transition-transform cursor-default group"
                   >
-                    <div className="w-14 h-14 lg:w-12 lg:h-12 rounded-xl bg-bg-main flex items-center justify-center text-cyan group-hover:bg-cyan group-hover:text-white transition-colors shrink-0 shadow-sm border border-gray-100">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-bg-main flex items-center justify-center text-cyan group-hover:bg-cyan group-hover:text-white transition-colors shrink-0 shadow-sm border border-gray-100">
                       <Icon size={28} className="lg:size-24" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-xl lg:text-lg text-primary mb-1">{feature.title}</h3>
-                      <p className="text-gray-500 font-medium text-base lg:text-sm leading-relaxed">{feature.desc}</p>
+                      <h3 className="font-bold text-base sm:text-lg text-primary mb-1">{feature.title}</h3>
+                      <p className="text-gray-500 font-medium text-sm leading-relaxed">{feature.desc}</p>
                     </div>
                   </motion.div>
                 );

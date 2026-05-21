@@ -47,9 +47,9 @@ export default function AboutPage() {
 
 
   return (
-    <div className="pt-24 lg:pt-32 bg-white">
+    <div className="pt-20 lg:pt-28 bg-white">
       {/* Responsive Hero Section */}
-      <section className="relative pt-12 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
+      <section className="relative pt-8 pb-12 lg:pt-10 lg:pb-20 overflow-hidden">
         {/* Decorative Background */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
           <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-[120px]" />
@@ -88,7 +88,7 @@ export default function AboutPage() {
               </motion.p>
 
               {/* Stats Grid - Desktop and Mobile friendly */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 lg:max-w-md mb-12 lg:mb-0">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 lg:max-w-md mb-8 lg:mb-0">
                 {[
                   { label: 'Clinically Proven', value: '13+ Yrs', icon: Award, color: 'bg-secondary/10 text-secondary' },
                   { label: 'Patient Trust', value: '5,000+', icon: Users, color: 'bg-cyan/10 text-cyan' },
@@ -161,13 +161,13 @@ export default function AboutPage() {
       </section>
 
       {/* Redesigned About Content Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-[#F8FAFC] relative overflow-hidden">
+      <section className="py-10 lg:py-16 bg-gradient-to-b from-white to-[#F8FAFC] relative overflow-hidden">
         {/* Subtle background decoration */}
         <div className="absolute top-0 right-0 w-1/3 h-full bg-cyan/5 -skew-x-12 transform translate-x-1/2 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto mb-12 lg:mb-16">
+          <div className="text-center max-w-4xl mx-auto mb-8 lg:mb-10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               className="font-serif text-2xl sm:text-4xl font-bold text-[#1E2A78] mb-8 leading-tight"
@@ -205,7 +205,7 @@ export default function AboutPage() {
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
-            className="mt-12 lg:mt-20 p-6 sm:p-10 bg-gradient-to-br from-[#1E2A78] to-[#0F8ACB] rounded-[2rem] lg:rounded-[3rem] text-center shadow-2xl relative overflow-hidden"
+            className="mt-8 lg:mt-12 p-6 sm:p-10 bg-gradient-to-br from-[#1E2A78] to-[#0F8ACB] rounded-[2rem] lg:rounded-[3rem] text-center shadow-2xl relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
             <div className="relative z-10">
@@ -218,9 +218,9 @@ export default function AboutPage() {
       </section>
 
       {/* Doctor Section */}
-      <section className="py-16 lg:py-24 bg-[#F2F4F7]">
+      <section className="py-10 lg:py-16 bg-[#F2F4F7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center max-w-3xl mx-auto mb-12">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center max-w-3xl mx-auto mb-8">
             <span className="inline-block px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-semibold rounded-full mb-4">Meet the Expert Behind Your Smile</span>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1E2A78] mb-4">Specialists With Genuine Dedication</h2>
             <p className="text-[#333333]/70 text-base leading-relaxed">
@@ -262,7 +262,7 @@ export default function AboutPage() {
 
               {/* Doctor Details */}
               <div className="w-full lg:w-3/5 p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
-                <div className="mb-8 pb-8 border-b border-[#F2F4F7]">
+                <div className="mb-6 pb-6 border-b border-[#F2F4F7]">
                   <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1E2A78] mb-3">Dr. R. Murali Karthik</h3>
                   <p className="text-[#00A8A8] font-bold tracking-wider uppercase text-sm sm:text-base mb-8">Chief Dental Surgeon | Prosthodontist & Implantologist</p>
 
@@ -330,7 +330,7 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                <div className="mt-12">
+                <div className="mt-8">
                   <EnquiryButton label="Book Consultation with Dr. Karthik" variant="large" className="w-full sm:w-auto px-8 py-3 text-base" />
                 </div>
               </div>
@@ -340,9 +340,9 @@ export default function AboutPage() {
       </section>
 
       {/* Doctor Testimonials Section */}
-      <section className="py-12 lg:py-20 bg-white">
+      <section className="py-8 lg:py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 lg:mb-12">
+          <div className="text-center mb-6 lg:mb-8">
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1E2A78] mb-4">What Patients Say About Dr. Murali Karthik</h3>
             <div className="w-24 h-1 bg-[#00A8A8] mx-auto rounded-full" />
           </div>

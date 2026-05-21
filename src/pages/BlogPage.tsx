@@ -7,7 +7,7 @@ export default function BlogPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-[#F2F4F7] to-white border-b border-[#F2F4F7]">
+      <section className="pt-36 pb-12 lg:pt-44 lg:pb-16 bg-gradient-to-br from-[#F2F4F7] to-white border-b border-[#F2F4F7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-2xl">
             <Link to="/" className="inline-flex items-center gap-2 text-[#333333]/40 hover:text-[#1E2A78] text-sm mb-6 transition-colors">

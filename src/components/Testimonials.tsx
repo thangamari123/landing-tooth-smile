@@ -66,16 +66,16 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section id="testimonials" className="py-16 lg:py-24 bg-white overflow-hidden relative">
+    <section id="testimonials" className="py-10 lg:py-16 bg-white overflow-hidden relative">
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#00A8A8]/5 skew-x-12 transform translate-x-1/2 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="max-w-2xl">
             <span className="inline-flex items-center px-4 py-1.5 bg-[#00A8A8]/10 text-[#00A8A8] text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
               Patient Testimonials
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1E2A78] mb-4">What Our Patients Say</h2>
+            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#1E2A78] mb-3 sm:mb-4">What Our Patients Say</h2>
             <p className="text-gray-500 text-base sm:text-lg leading-relaxed">
               We measure our success by the smiles we create and the trust we earn. Here's what our patients have to say about their experience at Tooth & Smile.
             </p>
@@ -103,7 +103,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="snap-center shrink-0 w-[85vw] sm:w-[350px]"
+              className="snap-center shrink-0 w-[88vw] sm:w-[350px]"
             >
               <div className="h-full bg-white p-8 rounded-[2rem] border border-gray-100 shadow-xl shadow-gray-200/50 flex flex-col relative group hover:border-[#00A8A8]/30 transition-all duration-300">
                 <div className="absolute top-8 right-8 text-[#00A8A8]/10 group-hover:text-[#00A8A8]/20 transition-colors">

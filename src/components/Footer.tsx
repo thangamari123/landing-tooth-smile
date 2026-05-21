@@ -45,7 +45,7 @@ export default function Footer() {
   return (
     <>
       {/* Modern Dental CTA Banner – Premium Clinic Conversion Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mb-20 sm:-mb-16 pt-8 lg:pt-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mb-16 sm:-mb-20 pt-8 lg:pt-0">
         <div
           className="rounded-[24px] sm:rounded-[32px] overflow-hidden flex flex-col lg:flex-row relative shadow-2xl"
           style={{
@@ -130,9 +130,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <footer className="bg-primary pt-24 pb-6 text-white/70">
+      <footer className="bg-primary pt-20 pb-6 text-white/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-12 sm:pb-16">
             <div className="sm:col-span-2 lg:col-span-1">
               <Link to="/" className="flex items-center gap-2.5 mb-5 group">
                 <div className="w-11 h-11 bg-white rounded-xl overflow-hidden flex items-center justify-center p-1.5 border border-white/20 group-hover:border-white/40 transition-all duration-300">
@@ -206,7 +206,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
             <p className="text-white/40 text-sm text-center sm:text-left">© 2026 Tooth & Smile Dental Clinic. All rights reserved.</p>
             <p className="text-cyan font-medium text-sm text-center sm:text-right italic">"Smile with Confidence. Live without Pain."</p>
           </div>

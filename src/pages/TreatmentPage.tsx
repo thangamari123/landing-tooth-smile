@@ -51,8 +51,8 @@ export default function TreatmentPage() {
 
   return (
     <div className="bg-white">
-      {/* Hero Section with pt-32 to fix navbar overlap */}
-      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-28 bg-primary overflow-hidden">
+      {/* Hero Section with pt-24 to fix navbar overlap */}
+      <section className="relative pt-32 pb-12 lg:pt-36 lg:pb-16 bg-primary overflow-hidden">
         {/* Animated background blurs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-secondary/20 blur-[100px] animate-pulse" />
@@ -128,7 +128,7 @@ export default function TreatmentPage() {
       </section>
 
       {/* Overview & Booking Card */}
-      <section className="py-12 lg:py-28">
+      <section className="py-8 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
@@ -169,11 +169,11 @@ export default function TreatmentPage() {
       </section>
 
       {/* Procedure Steps */}
-      <section className="py-16 lg:py-24 bg-bg-main relative overflow-hidden">
+      <section className="py-10 lg:py-16 bg-bg-main relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan/5 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <span className="inline-flex items-center px-4 py-1.5 bg-cyan/10 text-cyan text-sm font-bold rounded-full mb-6 tracking-wide uppercase">
               Procedure
             </span>
@@ -198,9 +198,9 @@ export default function TreatmentPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-16 lg:py-24 relative">
+      <section className="py-10 lg:py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <span className="inline-flex items-center px-4 py-1.5 bg-secondary/10 text-secondary text-sm font-bold rounded-full mb-6 tracking-wide uppercase">
               Benefits
             </span>
@@ -224,9 +224,9 @@ export default function TreatmentPage() {
 
       {/* Before & After Results */}
       {treatment.beforeAfter.length > 0 && (
-        <section className="pt-16 lg:pt-24 pb-0 bg-bg-main relative">
+        <section className="pt-10 lg:pt-16 pb-0 bg-bg-main relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
               <span className="inline-flex items-center px-4 py-1.5 bg-cyan/10 text-cyan text-sm font-bold rounded-full mb-6 tracking-wide uppercase">
                 Results
               </span>
@@ -260,9 +260,9 @@ export default function TreatmentPage() {
       )}
 
       {/* Reviews Section */}
-      <section className="pt-0 pb-16 lg:pb-24 bg-cyan/5 border-t border-gray-100 overflow-hidden relative">
+      <section className="pt-0 pb-10 lg:pb-16 bg-cyan/5 border-t border-gray-100 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <span className="inline-flex items-center px-4 py-1.5 bg-cyan/10 text-cyan text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
                 Patient Success Stories
@@ -328,9 +328,9 @@ export default function TreatmentPage() {
       <Testimonials />
 
       {/* FAQs */}
-      <section className="py-16 lg:py-24">
+      <section className="py-10 lg:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <span className="inline-flex items-center px-4 py-1.5 bg-secondary/10 text-secondary text-sm font-bold rounded-full mb-6 tracking-wide uppercase">
               FAQs
             </span>

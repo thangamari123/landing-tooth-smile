@@ -1,5 +1,5 @@
 import Hero from '../components/Hero';
-import TrustBar from '../components/TrustBar';
+import GoogleReviews from '../components/GoogleReviews';
 import Services from '../components/Services';
 import DoctorExplains from '../components/DoctorExplains';
 import WhyChooseUs from '../components/WhyChooseUs';
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TrustBar />
+      <GoogleReviews />
       <Services />
       <WhyChooseUs />
       <OurDoctors />

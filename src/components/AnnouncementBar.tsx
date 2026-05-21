@@ -28,7 +28,6 @@ export default function AnnouncementBar() {
         </div>
 
         <div className="flex items-center gap-4 ml-auto flex-shrink-0">
-          <span className="hidden lg:block bg-white/20 px-2 py-0.5 rounded text-xs font-bold tracking-wider">LIMITED OFFER</span>
           <a href="tel:9551120208" className="flex items-center gap-1.5 hover:text-accent transition-colors whitespace-nowrap">
             <PhoneCall size={14} />
             <span className="font-semibold text-xs sm:text-sm">+91 95511 20208</span>

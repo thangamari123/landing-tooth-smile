@@ -7,7 +7,7 @@ import EnquiryButton from '../components/EnquiryButton';
 export default function BeforeAfterPage() {
   return (
     <div>
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-[#F2F4F7] to-white border-b border-[#F2F4F7]">
+      <section className="pt-36 pb-10 lg:pt-44 lg:pb-16 bg-gradient-to-br from-[#F2F4F7] to-white border-b border-[#F2F4F7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-2xl">
             <Link to="/" className="inline-flex items-center gap-2 text-[#333333]/40 hover:text-[#1E2A78] text-sm mb-6 transition-colors">
@@ -19,7 +19,7 @@ export default function BeforeAfterPage() {
         </div>
       </section>
       {treatments.map((treatment) => (
-        <section key={treatment.slug} className="py-16 border-b border-[#F2F4F7] last:border-0">
+        <section key={treatment.slug} className="py-10 border-b border-[#F2F4F7] last:border-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
@@ -55,7 +55,7 @@ export default function BeforeAfterPage() {
           </div>
         </section>
       ))}
-      <section className="py-16 bg-gradient-to-r from-[#1E2A78] to-[#0F8ACB]">
+      <section className="py-10 bg-gradient-to-r from-[#1E2A78] to-[#0F8ACB]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">Start Your Transformation</h2>
