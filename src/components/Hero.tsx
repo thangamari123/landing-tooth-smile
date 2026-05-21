@@ -105,7 +105,7 @@ export default function Hero() {
   return (
     <section
       className="relative w-screen overflow-hidden"
-      style={{ height: '100dvh', minHeight: '100vh', zoom: 1.1112 }}
+      style={{ height: '100dvh', minHeight: '100vh' }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -196,7 +196,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="flex flex-col xs:flex-row sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start"
             >
               <button
                 onClick={() => navigate('/book-appointment')}
