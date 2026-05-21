@@ -152,7 +152,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-md rounded-full mb-4 sm:mb-5 border border-white/25 shadow-sm"
               >
                 <Shield size={14} className="text-cyan-300" />
-                <span className="text-white/90 text-[10px] sm:text-sm font-bold tracking-widest uppercase">
+                <span className="text-white/90 text-xs sm:text-base font-bold tracking-widest uppercase">
                   #1 Premium Dental Clinic in Chennai
                 </span>
               </motion.div>
@@ -167,7 +167,7 @@ export default function Hero() {
                 initial="hidden"
                 animate="visible"
                 exit={{ opacity: 0 }}
-                className="font-serif text-2xl sm:text-3xl lg:text-5xl font-extrabold text-white leading-[1.1] mb-3 sm:mb-4 tracking-tight drop-shadow-lg"
+                className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-3 sm:mb-4 tracking-tight drop-shadow-lg"
               >
                 {slides[current].heading}<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">
@@ -185,7 +185,7 @@ export default function Hero() {
                 initial="hidden"
                 animate="visible"
                 exit={{ opacity: 0 }}
-                className="text-sm sm:text-lg lg:text-xl text-white/80 mb-6 sm:mb-8 leading-relaxed max-w-lg font-medium drop-shadow mx-auto sm:mx-0"
+                className="text-base sm:text-xl lg:text-2xl text-white/80 mb-6 sm:mb-8 leading-relaxed max-w-lg font-medium drop-shadow mx-auto sm:mx-0"
               >
                 {slides[current].sub}
               </motion.p>
@@ -200,13 +200,13 @@ export default function Hero() {
             >
               <button
                 onClick={() => navigate('/book-appointment')}
-                className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full shadow-xl shadow-blue-900/40 transition-all hover:-translate-y-1 hover:shadow-2xl text-sm sm:text-base"
+                className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full shadow-xl shadow-blue-900/40 transition-all hover:-translate-y-1 hover:shadow-2xl text-base sm:text-lg"
               >
                 <Calendar size={18} /> Book an Appointment
               </button>
               <a
                 href="tel:9551120208"
-                className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-bold rounded-full transition-all hover:-translate-y-1 hover:shadow-xl text-sm sm:text-base"
+                className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-bold rounded-full transition-all hover:-translate-y-1 hover:shadow-xl text-base sm:text-lg"
               >
                 <Phone size={18} /> Call Us
               </a>
