@@ -76,7 +76,7 @@ export default function Hero() {
     return () => { if (progressRef.current) clearInterval(progressRef.current); };
   }, [current, paused]);
 
-  const slideVariants = {
+  const slideVariants: any = {
     enter: (dir: number) => ({
       x: dir > 0 ? '100%' : '-100%',
       opacity: 0,
@@ -84,7 +84,7 @@ export default function Hero() {
     center: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.85, ease: [0.25, 0.46, 0.45, 0.94] as [number,number,number,number] },
+      transition: { duration: 0.85, ease: [0.25, 0.46, 0.45, 0.94] },
     },
     exit: (dir: number) => ({
       x: dir > 0 ? '-15%' : '15%',
@@ -93,7 +93,7 @@ export default function Hero() {
     }),
   };
 
-  const textVariants = {
+  const textVariants: any = {
     hidden: { opacity: 0, y: 40 },
     visible: (delay: number) => ({
       opacity: 1,
