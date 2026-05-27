@@ -56,6 +56,42 @@ const doctors = [
     rating: "4.8",
     image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329939/Nidhyavarshini_Gurubaran_Orthodontist_p0uorv.png",
     about: "Creating perfect smiles with traditional braces and modern clear aligners for all age groups."
+  },
+  {
+    name: "Dr. Huzefa .N.J",
+    qualification: "BDS, MDS",
+    specialty: "Consultant Endodontist",
+    experience: "10+ Years",
+    rating: "4.9",
+    image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1779867905/ChatGPT_Image_May_27_2026_01_14_43_PM_ozpkzd.png",
+    about: "Specialized in painless single-visit root canal treatments and saving severely damaged teeth."
+  },
+  {
+    name: "Dr. Vijayalakshmi",
+    qualification: "BDS, MDS",
+    specialty: "Oral Surgeon",
+    experience: "8+ Years",
+    rating: "4.8",
+    image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329940/Vijayalakshmi_Oral_surgeon._cbayd2.png",
+    about: "Expert in complex tooth extractions, jaw surgeries, and providing comfortable oral surgical care."
+  },
+  {
+    name: "Dr. Padmavathy Srinivasan",
+    qualification: "BDS",
+    specialty: "Dental Surgeon",
+    experience: "5+ Years",
+    rating: "4.8",
+    image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329932/Dr.padmavathy_srinivasan_bds_arxwjs.png",
+    about: "Dedicated to comprehensive general dentistry and providing a comfortable, stress-free experience for all patients."
+  },
+  {
+    name: "Dr. Lakshman",
+    qualification: "BDS, FDS",
+    specialty: "Endodontics Specialist",
+    experience: "9+ Years",
+    rating: "4.9",
+    image: "https://res.cloudinary.com/dcldlvuib/image/upload/v1778329927/DR.Lakshman_BDS_Fellowship_in_Endodontics_FDS_bftvuc.png",
+    about: "Fellowship in Endodontics with extensive clinical expertise, including Senior Residency at Stanley."
   }
 ];
 
