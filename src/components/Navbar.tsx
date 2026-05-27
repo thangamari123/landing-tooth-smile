@@ -76,11 +76,11 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 flex flex-col bg-transparent">
+      <div className="sticky top-0 z-50 flex flex-col bg-transparent w-full">
         <AnnouncementBar />
         <motion.nav
           initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="transition-all duration-300 border-b bg-white shadow-lg border-gray-100 py-2"
+          className="transition-all duration-300 bg-white shadow-lg py-2"
         >
           <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between">
@@ -187,9 +187,6 @@ export default function Navbar() {
 
               {/* Desktop CTAs */}
               <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-                <a href="tel:9551120208" className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-primary/5 text-primary hover:bg-primary/10">
-                  <Phone size={16} /> Call Now
-                </a>
                 <Link to="/book-appointment"
                   className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5">
                   <Calendar size={16} /> Book Appointment

@@ -56,7 +56,7 @@ export default function Footer() {
           <div className="absolute inset-0 bg-white/5 pointer-events-none" />
 
           {/* Left Image Section */}
-          <div className="lg:w-1/3 relative h-[180px] sm:h-[220px] lg:h-auto">
+          <div className="lg:w-1/3 relative h-[160px] sm:h-[220px] lg:h-auto">
             <img
               src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               alt="Smiling couple with healthy teeth"
@@ -67,17 +67,17 @@ export default function Footer() {
           </div>
 
           {/* Center Content & Right Side */}
-          <div className="lg:w-2/3 p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+          <div className="lg:w-2/3 p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 relative z-10">
 
             {/* Center Content */}
             <div className="flex-1 text-center lg:text-left">
               <h3
-                className="font-serif font-bold text-white mb-4 leading-tight"
-                style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}
+                className="font-serif font-bold text-white mb-3 sm:mb-4 leading-tight"
+                style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}
               >
                 Ready to Restore Your <span className="text-cyan">Perfect Smile?</span>
               </h3>
-              <p className="text-white/70 text-base sm:text-lg mb-6 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-white/70 text-sm sm:text-base lg:text-lg mb-6 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Join 5,000+ happy patients who trust Tooth & Smile. Book your consultation today and take the first step towards a healthier you.
               </p>
 
@@ -120,7 +120,7 @@ export default function Footer() {
               </div>
 
               <Link to="/book-appointment"
-                className="w-full sm:w-auto text-center px-10 py-5 bg-white text-primary font-bold rounded-2xl hover:bg-cyan hover:text-white hover:scale-105 transition-all duration-300 shadow-xl"
+                className="w-full sm:w-auto text-center px-6 sm:px-10 py-4 sm:py-5 bg-white text-primary font-bold rounded-2xl hover:bg-cyan hover:text-white hover:scale-105 transition-all duration-300 shadow-xl"
               >
                 Book Appointment
               </Link>
@@ -130,7 +130,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <footer className="bg-primary pt-20 pb-6 text-white/70">
+      <footer className="bg-primary pt-24 sm:pt-28 lg:pt-32 pb-6 text-white/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-12 sm:pb-16">
             <div className="sm:col-span-2 lg:col-span-1">
