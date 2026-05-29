@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, MessageSquare } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, MessageSquare, Globe } from 'lucide-react';
 
 const reviews = [
   {
@@ -13,30 +13,38 @@ const reviews = [
   },
   {
     id: 2,
-    name: 'Sujatha Srinivasan',
+    name: 'Karthikeyan M',
     rating: 5,
-    text: "Very friendly staff and clean clinic. The root canal treatment was done in a single sitting and was totally pain-free. Excellent care and reasonable rates.",
+    text: "நான் இங்க பல் சொத்தைக்கு சிகிச்சை எடுத்தேன். டாக்டர் ரொம்ப பொறுமையா விளக்கி, சுத்தமா வலி இல்லாம சிகிச்சை பண்ணாரு. கிளினிக் ரொம்ப சுத்தமா இருக்கு. ரொம்ப நன்றி!",
     date: '2 weeks ago',
     type: 'Verified Patient'
   },
   {
     id: 3,
-    name: 'Amitabh Sharma',
+    name: 'Sujatha Srinivasan',
     rating: 5,
-    text: "Had my wisdom teeth removed here. The surgeon was highly skilled and finished the extraction in less than 20 minutes with zero pain. The follow-up was also great.",
+    text: "Very friendly staff and clean clinic. The root canal treatment was done in a single sitting and was totally pain-free. Excellent care and reasonable rates.",
     date: '3 weeks ago',
-    type: 'Local Guide'
-  },
-  {
-    id: 4,
-    name: 'Deepika R',
-    rating: 5,
-    text: "Got teeth whitening done for my wedding. The results are amazing! The team explains every step clearly and maintains international hygiene standards.",
-    date: '1 month ago',
     type: 'Verified Patient'
   },
   {
+    id: 4,
+    name: 'Lakshmi N',
+    rating: 5,
+    text: "Mylapore-la the best dental clinic. பல் எடுக்குறதுக்கு இங்க வந்தேன், கொஞ்சம் கூட வலி இல்ல. Staffs ellam romba friendly. Highly recommended.",
+    date: '1 month ago',
+    type: 'Local Guide'
+  },
+  {
     id: 5,
+    name: 'Amitabh Sharma',
+    rating: 5,
+    text: "Had my wisdom teeth removed here. The surgeon was highly skilled and finished the extraction in less than 20 minutes with zero pain. The follow-up was also great.",
+    date: '1 month ago',
+    type: 'Local Guide'
+  },
+  {
+    id: 6,
     name: 'Vikram Aditya',
     rating: 5,
     text: "My elderly parents have been getting full dentures and implant-retained dentures from Dr. Murali. The patience and care shown here is exceptional. Best dental clinic in Chennai.",
@@ -127,30 +135,58 @@ export default function GoogleReviews() {
             </p>
           </div>
 
-          {/* Rating Summary Card */}
-          <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center gap-5 lg:min-w-[340px]">
-            <div className="flex flex-col items-center sm:items-start">
-              <div className="flex items-center gap-2">
-                <span className="text-3xl sm:text-4xl font-black text-[#1E2A78]">4.9</span>
-                <div className="flex flex-col">
-                  <div className="flex gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={16} className="fill-[#FACC15] text-[#FACC15]" />
-                    ))}
-                  </div>
-                  <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">500+ Reviews</span>
+          {/* Realistic Google Profile Card */}
+          <div className="bg-[#202124] text-[#bdc1c6] p-5 sm:p-6 rounded-2xl border border-[#3c4043] shadow-2xl flex flex-col sm:flex-row gap-6 lg:min-w-[440px] font-sans relative overflow-hidden text-left">
+            <div className="flex-1">
+              <a href="https://www.google.com/search?q=Tooth+and+Smile+Advanced+Dentistry+-+Mylapore+Reviews&sca_esv=78ed2d1ec9f8904c&hl=en-GB&authuser=0&aep=1&biw=1231&bih=575&prmd=ivns&sxsrf=ANbL-n6kplCmRX9J3US1D2QgyFQF50ey1w:1780030724116&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpV6Bbbmx4QVaoKkiRQ2jlwrxFIvM8XHanlYvyyDlVq4v0ByTSZEH6uETDXPDhVVnqzCW2nvmXZMVTx1PeF1IQlOQNjnKJ4upYPmKc4AwMlbcxYUnJ3xzWJl-4xTprcuH2hpKCJQ1LPByBskuACp3Yg4ptRP3GQRoRHvYMVrW_9oCfXdIBQJbk_uMcGSP2X0hFhT-lYQ&sa=X&ved=2ahUKEwjD5f-X292UAxXHe2wGHfdPJqsQ0pQJegQIBhAI#sv=CAwSlAMKBmxjbF9wdhJTCgNwdnESTENnMHZaeTh4TVdKNWVHY3pZMlp5SWlnS0lsUnZiM1JvSUdGdVpDQlRiV2xzWlNCQlpIWmhibU5sWkNCRVpXNTBhWE4wY25rUUFoZ0QS0AEKA2xxaRLIAUNqVlViMjkwYUNCaGJtUWdVMjFwYkdVZ1FXUjJZVzVqWldRZ1JHVnVkR2x6ZEhKNUlDMGdUWGxzWVhCdmNtVWdVbVYyYVdWM2N5SUNPQUZJdDl1R3hfZXFnSUFJV2o4UUFCQUJFQUlRQXhBRUdBQVlBaGdFR0FVaUszUnZiM1JvSUdGdVpDQnpiV2xzWlNCaFpIWmhibU5sWkNCa1pXNTBhWE4wY25rZ2JYbHNZWEJ2Y21XU0FRMWtaVzUwWVd4ZlkyeHBibWxqEhIKA3RicxILbHJmOiEzc0lBRT0SOgoBcRI1VG9vdGggYW5kIFNtaWxlIEFkdmFuY2VkIERlbnRpc3RyeSAtIE15bGFwb3JlIFJldmlld3MaEmxvY2FsLXBsYWNlLXZpZXdlchgKILzrlfIE" target="_blank" rel="noopener noreferrer" className="text-[18px] sm:text-[20px] leading-tight font-medium text-[#e8eaed] hover:underline mb-1.5 inline-block decoration-[#e8eaed]">
+                Tooth & Smile Dental Clinic
+              </a>
+              <div className="flex items-center gap-1.5 text-sm mb-2">
+                <span className="text-[#9aa0a6]">4.9</span>
+                <div className="flex gap-0.5 text-[#fbbc04] items-center">
+                  <Star size={14} className="fill-current text-[#fbbc04]" />
+                  <Star size={14} className="fill-current text-[#fbbc04]" />
+                  <Star size={14} className="fill-current text-[#fbbc04]" />
+                  <Star size={14} className="fill-current text-[#fbbc04]" />
+                  <Star size={14} className="fill-current text-[#fbbc04]" />
                 </div>
+                <span>(475) · Dental clinic</span>
+              </div>
+              <div className="text-[15px] mb-1 text-[#9aa0a6]">
+                60/71, Appu St · 095511 20208
+              </div>
+              <div className="text-[15px] mb-4">
+                <span className="text-[#81c995]">Open</span> <span className="text-[#9aa0a6]">· Closes 2 pm</span>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <div className="w-6 h-6 rounded-full bg-[#8ab4f8] flex items-center justify-center shrink-0 mt-0.5">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#202124]">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                  </svg>
+                </div>
+                <p className="text-[15px] text-[#bdc1c6] leading-snug font-medium">
+                  "No Pain, more smile 😁... I'm Very happy to share the feedback."
+                </p>
               </div>
             </div>
-            <div className="h-px sm:h-12 w-full sm:w-px bg-gray-100" />
-            <a
-              href="https://share.google/nhwKj6EY2zqraPrCG"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto text-center px-5 py-3 bg-[#4285F4] text-white font-bold text-xs rounded-xl hover:bg-[#3572D4] transition-all flex items-center justify-center gap-2 shadow-md shadow-[#4285F4]/10"
-            >
-              <MessageSquare size={14} /> Write a Review
-            </a>
+
+            {/* Action Buttons */}
+            <div className="flex sm:flex-col items-center justify-start gap-5 pt-2 sm:pt-0 sm:pl-2">
+              <a href="#" className="flex flex-col items-center gap-1.5 group cursor-pointer">
+                <div className="w-[42px] h-[42px] rounded-full border border-[#5f6368] flex items-center justify-center group-hover:bg-[#3c4043] transition-colors">
+                  <Globe size={20} className="text-[#8ab4f8]" strokeWidth={2.5} />
+                </div>
+                <span className="text-[#8ab4f8] text-[13px] font-medium">Website</span>
+              </a>
+              <a href="https://www.google.com/search?q=Tooth+and+Smile+Advanced+Dentistry+-+Mylapore+Reviews&sca_esv=78ed2d1ec9f8904c&hl=en-GB&authuser=0&aep=1&biw=1231&bih=575&prmd=ivns&sxsrf=ANbL-n6kplCmRX9J3US1D2QgyFQF50ey1w:1780030724116&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpV6Bbbmx4QVaoKkiRQ2jlwrxFIvM8XHanlYvyyDlVq4v0ByTSZEH6uETDXPDhVVnqzCW2nvmXZMVTx1PeF1IQlOQNjnKJ4upYPmKc4AwMlbcxYUnJ3xzWJl-4xTprcuH2hpKCJQ1LPByBskuACp3Yg4ptRP3GQRoRHvYMVrW_9oCfXdIBQJbk_uMcGSP2X0hFhT-lYQ&sa=X&ved=2ahUKEwjD5f-X292UAxXHe2wGHfdPJqsQ0pQJegQIBhAI#sv=CAwSlAMKBmxjbF9wdhJTCgNwdnESTENnMHZaeTh4TVdKNWVHY3pZMlp5SWlnS0lsUnZiM1JvSUdGdVpDQlRiV2xzWlNCQlpIWmhibU5sWkNCRVpXNTBhWE4wY25rUUFoZ0QS0AEKA2xxaRLIAUNqVlViMjkwYUNCaGJtUWdVMjFwYkdVZ1FXUjJZVzVqWldRZ1JHVnVkR2x6ZEhKNUlDMGdUWGxzWVhCdmNtVWdVbVYyYVdWM2N5SUNPQUZJdDl1R3hfZXFnSUFJV2o4UUFCQUJFQUlRQXhBRUdBQVlBaGdFR0FVaUszUnZiM1JvSUdGdVpDQnpiV2xzWlNCaFpIWmhibU5sWkNCa1pXNTBhWE4wY25rZ2JYbHNZWEJ2Y21XU0FRMWtaVzUwWVd4ZlkyeHBibWxqEhIKA3RicxILbHJmOiEzc0lBRT0SOgoBcRI1VG9vdGggYW5kIFNtaWxlIEFkdmFuY2VkIERlbnRpc3RyeSAtIE15bGFwb3JlIFJldmlld3MaEmxvY2FsLXBsYWNlLXZpZXdlchgKILzrlfIE" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 group cursor-pointer">
+                <div className="w-[42px] h-[42px] rounded-full border border-[#5f6368] flex items-center justify-center group-hover:bg-[#3c4043] transition-colors">
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-[#8ab4f8]">
+                     <path d="M13.5 22L2.5 11C2.1 10.6 2.1 9.9 2.5 9.5L9.5 2.5C9.9 2.1 10.6 2.1 11 2.5L22 13.5C22.4 13.9 22.4 14.6 22 15L15 22C14.6 22.4 13.9 22.4 13.5 22ZM12 7V10H9C8.4 10 8 10.4 8 11V14H10V12H12V15L16 11L12 7Z"/>
+                   </svg>
+                </div>
+                <span className="text-[#8ab4f8] text-[13px] font-medium">Directions</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -199,7 +235,7 @@ export default function GoogleReviews() {
                     ))}
                   </div>
 
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-medium line-clamp-4">
+                  <p className="text-black text-xs sm:text-sm leading-relaxed font-semibold line-clamp-4">
                     "{review.text}"
                   </p>
                 </div>

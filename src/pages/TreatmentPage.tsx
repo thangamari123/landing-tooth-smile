@@ -259,70 +259,7 @@ export default function TreatmentPage() {
         </section>
       )}
 
-      {/* Reviews Section */}
-      <section className="pt-0 pb-10 lg:pb-16 bg-cyan/5 border-t border-gray-100 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <span className="inline-flex items-center px-4 py-1.5 bg-cyan/10 text-cyan text-sm font-bold rounded-full mb-4 tracking-wide uppercase">
-                Patient Success Stories
-              </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-primary">What Our Patients Say</h2>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex gap-3">
-              <button onClick={() => slideReviews('left')} className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-primary hover:bg-bg-main transition-colors shadow-sm z-10 relative">
-                <ChevronLeft size={20} />
-              </button>
-              <button onClick={() => slideReviews('right')} className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-primary hover:bg-bg-main transition-colors shadow-sm z-10 relative">
-                <ChevronRight size={20} />
-              </button>
-            </motion.div>
-          </div>
 
-          <div 
-            ref={reviewsRef}
-            className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-10 scrollbar-hide pt-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {treatment.reviews.map((review, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="snap-center shrink-0 w-[300px] sm:w-[450px] bg-bg-main p-8 rounded-[2.5rem] border border-gray-100 hover:border-secondary/20 hover:shadow-xl transition-all group relative"
-              >
-                <Quote size={40} className="text-secondary/10 absolute top-6 right-8" />
-                <div className="relative z-10">
-                  <div className="flex gap-1 mb-4">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} size={16} className={star <= review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"} />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 font-medium leading-relaxed mb-8 italic text-lg">
-                    "{review.text}"
-                  </p>
-                  <div className="flex items-center justify-between border-t border-gray-200 pt-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold text-base">
-                        {review.author.charAt(0)}
-                      </div>
-                      <div>
-                        <div className="font-bold text-primary text-base">{review.author}</div>
-                        <div className="text-xs text-gray-400">{review.date}</div>
-                      </div>
-                    </div>
-                    <div className="px-3 py-1 bg-white border border-gray-100 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-wider shadow-sm">
-                      via {review.source}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Global Testimonials */}
       <Testimonials />

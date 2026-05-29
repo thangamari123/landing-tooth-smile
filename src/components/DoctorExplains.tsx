@@ -157,23 +157,48 @@ export default function DoctorExplains() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-4"
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
           <a
             href="https://www.instagram.com/toothsmiledentalclinic/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/5 border border-white/10 text-white font-bold text-xs rounded-xl hover:bg-[#E4405F] transition-all shadow-xl group"
+            className="flex items-center gap-4 px-6 py-5 sm:px-8 bg-white/5 border border-white/10 text-white rounded-3xl hover:bg-white/10 transition-all group w-full sm:w-[240px] justify-center sm:justify-start shadow-lg"
           >
-            <Instagram size={16} className="group-hover:scale-110 transition-transform" /> Follow on Instagram
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 group-hover:scale-110 transition-transform">
+              <defs>
+                <linearGradient id="ig-grad" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#F58529" />
+                  <stop offset="10%" stopColor="#FEDA77" />
+                  <stop offset="50%" stopColor="#DD2A7B" />
+                  <stop offset="70%" stopColor="#8134AF" />
+                  <stop offset="100%" stopColor="#515BD4" />
+                </linearGradient>
+              </defs>
+              <rect width="24" height="24" rx="12" fill="url(#ig-grad)" />
+              <rect x="6" y="6" width="12" height="12" rx="3" stroke="white" strokeWidth="1.5" fill="none" />
+              <circle cx="12" cy="12" r="2.5" stroke="white" strokeWidth="1.5" fill="none" />
+              <circle cx="15.5" cy="8.5" r="1" fill="white" />
+            </svg>
+            <div className="flex flex-col text-left">
+              <span className="font-bold text-sm leading-tight text-white">Follow on</span>
+              <span className="font-bold text-sm leading-tight text-white">Instagram</span>
+            </div>
           </a>
           <a
             href="https://www.youtube.com/@toothandsmiledentalclinic-7818/featured"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/5 border border-white/10 text-white font-bold text-xs rounded-xl hover:bg-[#FF0000] transition-all shadow-xl group"
+            className="flex items-center gap-4 px-6 py-5 sm:px-8 bg-white/5 border border-white/10 text-white rounded-3xl hover:bg-white/10 transition-all group w-full sm:w-[240px] justify-center sm:justify-start shadow-lg"
           >
-            <Youtube size={16} className="group-hover:scale-110 transition-transform" /> YouTube Channel
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 group-hover:scale-110 transition-transform">
+              <path d="M21.58 6.42C21.41 5.75 20.89 5.2 20.21 5.03C19 4.7 12 4.7 12 4.7C12 4.7 5 4.7 3.79 5.03C3.11 5.2 2.59 5.75 2.42 6.42C2.1 7.64 2.1 12 2.1 12C2.1 12 2.1 16.36 2.42 17.58C2.59 18.25 3.11 18.8 3.79 18.97C5 19.3 12 19.3 12 19.3C12 19.3 19 19.3 20.21 18.97C20.89 18.8 21.41 18.25 21.58 17.58C21.9 16.36 21.9 12 21.9 12C21.9 12 21.9 7.64 21.58 6.42Z" fill="#FF0000" />
+              <path d="M9.9 15.3L15.3 12L9.9 8.7V15.3Z" fill="white" />
+            </svg>
+            <div className="flex flex-col text-left">
+              <span className="font-bold text-sm leading-tight text-white">YouTube</span>
+              <span className="font-bold text-sm leading-tight text-white">Channel</span>
+            </div>
           </a>
         </motion.div>
       </div>

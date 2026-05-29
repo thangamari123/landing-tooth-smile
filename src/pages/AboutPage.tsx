@@ -1,12 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check, Shield, Stethoscope, Clock, Users, Award, BookOpen, GraduationCap, Star, Quote, ArrowRight } from 'lucide-react';
+import { Check, Shield, Stethoscope, Clock, Users, Award, BookOpen, GraduationCap, Star, Quote, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import EnquiryButton from '../components/EnquiryButton';
 import BeforeAfter from '../components/BeforeAfter';
 import Testimonials from '../components/Testimonials';
+import OurDoctors from '../components/OurDoctors';
 
 export default function AboutPage() {
+  const doctorScrollRef = useRef<HTMLDivElement>(null);
+
+  const slideDoctorTestimonials = (direction: 'left' | 'right') => {
+    if (doctorScrollRef.current) {
+      const scrollAmount = window.innerWidth < 640 ? 320 : 420;
+      doctorScrollRef.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -340,32 +350,55 @@ export default function AboutPage() {
       </section>
 
       {/* Doctor Testimonials Section */}
-      <section className="py-8 lg:py-14 bg-white">
+      <section className="py-8 lg:py-14 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-6 lg:mb-8">
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1E2A78] mb-4">What Patients Say About Dr. Murali Karthik</h3>
-            <div className="w-24 h-1 bg-[#00A8A8] mx-auto rounded-full" />
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-6 max-w-5xl mx-auto">
+            <div className="text-left">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1E2A78] mb-4">What Patients Say About Dr. Murali Karthik</h3>
+              <div className="w-24 h-1 bg-[#00A8A8] rounded-full" />
+            </div>
+            
+            <div className="flex gap-3">
+              <button onClick={() => slideDoctorTestimonials('left')} className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-[#1E2A78] hover:bg-gray-50 transition-colors shadow-sm">
+                <ChevronLeft size={20} />
+              </button>
+              <button onClick={() => slideDoctorTestimonials('right')} className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-[#1E2A78] hover:bg-gray-50 transition-colors shadow-sm">
+                <ChevronRight size={20} />
+              </button>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-4 lg:gap-6 max-w-5xl mx-auto">
+          
+          <div 
+            ref={doctorScrollRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-10 scrollbar-hide pt-4 max-w-5xl mx-auto"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {doctorTestimonials.map((testimonial, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="bg-[#F2F4F7]/40 p-6 rounded-2xl border border-[#1E2A78]/5 relative"
+                className="snap-center shrink-0 w-[85vw] sm:w-[450px] bg-white p-8 rounded-[2rem] border border-gray-100 shadow-xl shadow-gray-200/50 flex flex-col relative group hover:border-[#00A8A8]/30 transition-all duration-300"
               >
-                <Quote size={32} className="text-[#00A8A8]/20 absolute top-6 left-6" />
-                <div className="relative z-10 pl-4">
-                  <div className="flex gap-1 mb-4">
+                <div className="absolute top-8 right-8 text-[#00A8A8]/10 group-hover:text-[#00A8A8]/20 transition-colors">
+                  <Quote size={48} fill="currentColor" />
+                </div>
+                
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex gap-1 mb-6">
                     {[1, 2, 3, 4, 5].map((_, starIndex) => (
                       <Star key={starIndex} size={16} className="text-amber-400 fill-amber-400" />
                     ))}
                   </div>
-                  <p className="text-[#333333]/80 text-sm leading-relaxed italic mb-6">"{testimonial.text}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#1E2A78]/10 flex items-center justify-center text-[#1E2A78] font-bold text-sm">
+                  
+                  <p className="text-gray-900 text-base leading-relaxed italic font-semibold mb-8 flex-grow">
+                    "{testimonial.text}"
+                  </p>
+                  
+                  <div className="flex items-center gap-4 pt-6 border-t border-gray-50 mt-auto">
+                    <div className="w-12 h-12 rounded-full bg-[#1E2A78]/10 flex items-center justify-center text-[#1E2A78] font-bold text-lg">
                       {testimonial.author.charAt(0)}
                     </div>
                     <div>
-                      <div className="font-bold text-[#1E2A78] text-sm">{testimonial.author}</div>
-                      <div className="text-xs text-[#00A8A8] font-medium">{testimonial.source}</div>
+                      <div className="font-bold text-[#1E2A78] text-base">{testimonial.author}</div>
+                      <div className="text-xs text-[#00A8A8] font-bold uppercase tracking-wider mt-0.5">{testimonial.source}</div>
                     </div>
                   </div>
                 </div>
@@ -374,6 +407,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Our Expert Clinicians Section */}
+      <OurDoctors />
 
       {/* Before & After Section */}
       <BeforeAfter />

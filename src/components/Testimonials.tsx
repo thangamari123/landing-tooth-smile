@@ -7,7 +7,7 @@ const testimonials = [
     id: 1, 
     name: 'Priya R.', 
     location: 'Mylapore',
-    text: "I was terrified of the dentist for years. The team at Tooth & Smile made my root canal completely painless. I actually can't believe how easy it was. I only wish I had come sooner.", 
+    text: "எனக்கு பல வருஷமா பல்லு டாக்டரை பாத்தாலே பயம். ஆனா Tooth & Smile-ல root canal பண்ணப்ப கொஞ்சம் கூட வலி இல்ல. இவ்வளவு ஈசியா இருக்கும்னு நான் நினைக்கவே இல்ல. ரொம்ப நல்லா கவனிச்சுக்கிட்டாங்க.", 
     treatment: 'Root Canal'
   },
   { 
@@ -21,7 +21,7 @@ const testimonials = [
     id: 3, 
     name: 'Meena V.', 
     location: 'Velachery',
-    text: "I got dental implants after years of hiding my smile. The procedure was smooth, the team was professional, and the result looks completely natural. It's changed my confidence entirely.", 
+    text: "பல வருஷமா நான் சிரிக்கவே தயங்குவேன். இங்க வந்து dental implants போட்டதுக்கு அப்பறம் என் confidence முழுசா மாறிடுச்சு. Treatment ரொம்ப ஸ்மூத்-ஆ முடிஞ்சது.", 
     treatment: 'Dental Implants'
   },
   { 
@@ -116,7 +116,7 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                <p className="text-[#333333]/80 text-base leading-relaxed mb-8 flex-grow italic">
+                <p className="text-black text-base leading-relaxed mb-8 flex-grow italic font-semibold">
                   "{t.text}"
                 </p>
                 

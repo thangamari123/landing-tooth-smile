@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { treatments } from '../lib/treatments';
 import AnnouncementBar from './AnnouncementBar';
+import LanguageToggle from './LanguageToggle';
 
 const navLinks = [
   { label: 'Home', href: '/', isHash: false },
@@ -187,6 +188,7 @@ export default function Navbar() {
 
               {/* Desktop CTAs */}
               <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+                <LanguageToggle />
                 <Link to="/book-appointment"
                   className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5">
                   <Calendar size={16} /> Book Appointment
@@ -278,6 +280,9 @@ export default function Navbar() {
 
               {/* CTAs */}
               <div className="mt-6 flex flex-col gap-3">
+                <div className="flex justify-center mb-2">
+                  <LanguageToggle />
+                </div>
                 <a href="tel:9551120208" className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary/5 text-primary text-base font-bold rounded-2xl">
                   <Phone size={20} /> Call +91 95511 20208
                 </a>

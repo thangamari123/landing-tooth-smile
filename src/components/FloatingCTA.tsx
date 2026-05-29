@@ -10,7 +10,7 @@ export default function FloatingCTA() {
           href="tel:9551120208" 
           className="flex-1 bg-[#0F3D91] text-white py-3 flex items-center justify-center gap-2 font-bold active:bg-[#0b2e6b] transition-colors"
         >
-          <Phone size={16} /> <span className="text-sm">Call Now</span>
+          <Phone size={16} className="animate-vibrate" /> <span className="text-sm">Call Now</span>
         </a>
         <a 
           href="https://wa.me/919551120208?text=Hi,%20I%20would%20like%20to%20book%20an%20appointment%20at%20Tooth%20%26%20Smile." 
@@ -37,7 +37,7 @@ export default function FloatingCTA() {
             Call Us
           </span>
           <div className="w-14 h-14 flex items-center justify-center rounded-full bg-[#0F3D91]">
-            <Phone size={22} />
+            <Phone size={22} className="animate-vibrate" />
           </div>
         </motion.a>
 

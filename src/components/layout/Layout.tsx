@@ -19,9 +19,9 @@ export default function Layout() {
   }, [location.pathname, location.hash]);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden w-full">
         <Outlet />
       </main>
       <Footer />
