@@ -6,17 +6,17 @@ const SLIDE_DURATION = 6000;
 
 const slides = [
   {
-    image: "/images/hero-banner2.webp",
+    image: "/images/hero-banner1.webp",
     mobileImage: "/images/hero mobile -banner (1).webp",
     alt: "Dr. Muralikarthik – Prosthodontist & Implantologist",
   },
   {
-    image: "/images/hero-banner3.webp",
+    image: "/images/hero-banner4.webp",
     mobileImage: "/images/hero mobile -banner (2).webp",
     alt: "Advanced Dental Technology",
   },
   {
-    image: "/images/hero-banner4.webp",
+    image: "/images/hero-banner3.webp",
     mobileImage: "/images/hero mobile -banner (3).webp",
     alt: "Painless Dental Treatment",
   },
@@ -26,7 +26,7 @@ const slides = [
     alt: "Happy Patient Smiles",
   },
   {
-    image: "/images/hero-banner3.webp",
+    image: "/images/hero-banner5.webp",
     mobileImage: "/images/hero mobile -banner (5).webp",
     alt: "Beautiful Smiles",
   }
