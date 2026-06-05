@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Star, ShieldCheck, Heart } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Calendar, Star, ShieldCheck, Heart, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const doctors = [
@@ -95,9 +96,9 @@ const doctors = [
   }
 ];
 
-
-
 export default function OurDoctors() {
+  const [selectedDoctor, setSelectedDoctor] = useState<typeof doctors[0] | null>(null);
+
   return (
     <section id="doctors" className="py-10 sm:py-16 bg-[#0F172A] relative overflow-hidden">
       {/* Clinical Tech Background */}
@@ -139,7 +140,10 @@ export default function OurDoctors() {
               transition={{ delay: index * 0.1 }}
               className="snap-center shrink-0 w-[280px]"
             >
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden flex flex-col h-full">
+              <div 
+                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden flex flex-col h-full cursor-pointer hover:border-cyan/30 transition-colors"
+                onClick={() => setSelectedDoctor(doctor)}
+              >
                 <div className="relative h-64 overflow-hidden">
                   <img src={doctor.image} alt={doctor.name} className="w-full h-full object-cover object-top" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80" />
@@ -157,12 +161,12 @@ export default function OurDoctors() {
                   <h3 className="text-white font-bold text-lg mb-0.5">{doctor.name}</h3>
                   <p className="text-cyan/80 text-[11px] font-medium mb-3">{doctor.specialty}</p>
                   <p className="text-white/40 text-[11px] italic mb-3 line-clamp-2">"{doctor.about}"</p>
-                  <Link to="/book-appointment" className="mt-auto flex items-center gap-2 text-white text-[11px] font-bold group/btn">
+                  <button className="mt-auto flex items-center gap-2 text-white text-[11px] font-bold group/btn text-left">
                     <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover/btn:bg-cyan transition-all">
                       <ArrowRight size={14} />
                     </div>
-                    <span>Consult Dr. {doctor.name.split(' ').pop()}</span>
-                  </Link>
+                    <span>View Profile</span>
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -178,7 +182,8 @@ export default function OurDoctors() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group"
+              className="group cursor-pointer"
+              onClick={() => setSelectedDoctor(doctor)}
             >
               <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:border-cyan/50 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] flex flex-col h-full">
                 <div className="relative h-80 overflow-hidden">
@@ -217,21 +222,90 @@ export default function OurDoctors() {
                     "{doctor.about}"
                   </p>
 
-                  <Link 
-                    to="/book-appointment" 
-                    className="inline-flex items-center gap-4 text-white font-bold text-sm group/btn"
+                  <button 
+                    className="inline-flex items-center gap-4 text-white font-bold text-sm group/btn mt-auto text-left"
                   >
                     <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover/btn:bg-cyan group-hover/btn:border-cyan transition-all">
                       <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
                     </div>
-                    <span>Consult Now</span>
-                  </Link>
+                    <span>View Profile</span>
+                  </button>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Doctor Details Modal */}
+      <AnimatePresence>
+        {selectedDoctor && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 mt-16 sm:mt-0">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedDoctor(null)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-3xl bg-[#1E293B] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl flex flex-col sm:flex-row z-10 max-h-[85vh] sm:max-h-[90vh] overflow-y-auto"
+            >
+              <button 
+                onClick={() => setSelectedDoctor(null)}
+                className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white/80 hover:text-white hover:bg-black/60 transition-colors backdrop-blur-md"
+              >
+                <X size={18} />
+              </button>
+              
+              <div className="w-full sm:w-2/5 h-[300px] sm:h-auto relative shrink-0">
+                <img src={selectedDoctor.image} alt={selectedDoctor.name} className="w-full h-full object-cover object-top" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B] via-transparent to-transparent sm:bg-gradient-to-r" />
+              </div>
+              
+              <div className="p-6 sm:p-10 flex-1 flex flex-col justify-center bg-[#1E293B]">
+                <div className="flex items-center gap-2 mb-3">
+                  <ShieldCheck size={16} className="text-cyan" />
+                  <span className="text-cyan text-[10px] sm:text-xs font-bold uppercase tracking-widest">{selectedDoctor.qualification}</span>
+                </div>
+                
+                <h3 className="text-white font-bold text-2xl sm:text-3xl lg:text-4xl mb-2">{selectedDoctor.name}</h3>
+                <p className="text-cyan/90 font-medium text-sm sm:text-base mb-6">{selectedDoctor.specialty}</p>
+                
+                <div className="flex flex-wrap gap-3 mb-6">
+                  <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl border border-white/10">
+                    <Star size={16} className="text-yellow-400 fill-yellow-400" />
+                    <span className="text-white text-xs sm:text-sm font-bold">{selectedDoctor.rating} Rating</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl border border-white/10">
+                    <Calendar size={16} className="text-cyan" />
+                    <span className="text-white text-xs sm:text-sm font-bold">{selectedDoctor.experience} Exp.</span>
+                  </div>
+                </div>
+                
+                <h4 className="text-white/90 font-bold mb-2">About the Doctor</h4>
+                <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-8">
+                  {selectedDoctor.about}
+                </p>
+                
+                <div className="mt-auto pt-4 border-t border-white/10">
+                  <Link 
+                    to="/book-appointment" 
+                    onClick={() => setSelectedDoctor(null)}
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-cyan to-secondary hover:from-cyan/90 hover:to-secondary/90 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan/20 group"
+                  >
+                    <Calendar size={18} className="group-hover:scale-110 transition-transform" />
+                    <span>Book Appointment with {selectedDoctor.name.split(' ').pop()}</span>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
